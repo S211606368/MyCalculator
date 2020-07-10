@@ -169,7 +169,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/symbol_background"
         android:text="@string/division"
         android:textColor="#FFFFFFFF"
@@ -271,9 +271,9 @@
 
     <TextView
         android:id="@+id/text_cal"
-        android:layout_width="410dp"
+        android:layout_width="430dp"
         android:layout_height="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="0dp"
         android:text=""
         android:gravity="center_vertical|right"
@@ -284,8 +284,8 @@
 
     <TextView
         android:id="@+id/text_total"
-        android:layout_width="410dp"
-        android:layout_height="45dp"
+        android:layout_width="430dp"
+        android:layout_height="60dp"
         android:text=""
         android:gravity="center_vertical|right"
         android:textColor="#FFFFFFFF"
