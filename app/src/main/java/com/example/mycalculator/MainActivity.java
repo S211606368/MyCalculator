@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @value RIDE
  * @value DIVISION
  */
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
     /**
      * calculation 存储的是你在计算器上输入的运算式，比如123+456+568
      */
@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity{
      * total 是当前计算器上输入的运算式数值的合计，比如123+456+789=1368，total就会存储1368这个数值
      */
     double total = 0;
+
+    double lastNumber = 0;
 
     /**
      * count 是计算器上当前输入数值的显示，比如123%，count上的数值会在使用符号后加入到calculation中
@@ -41,10 +43,10 @@ public class MainActivity extends AppCompatActivity{
      */
     boolean isPoint = false;
 
-    public static final char ADD = '+';
-    public static final char SUB = '-';
-    public static final char RIDE = '*';
-    public static final char DIVISION = '/';
+    private static final char ADD = '+';
+    private static final char SUB = '-';
+    private static final char RIDE = '*';
+    private static final char DIVISION = '/';
 
     /**
      * textViewCal 用于显示calculation的文本框
@@ -54,14 +56,15 @@ public class MainActivity extends AppCompatActivity{
     /**
      * textTotal 用于显示count的文本框
      */
-    TextView textTotal;
+    TextView textViewTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         textViewCal = findViewById(R.id.text_cal);
-        textTotal = findViewById(R.id.text_total);
+        textViewTotal = findViewById(R.id.text_total);
 
         Button buttonNumber0 = findViewById(R.id.button_0);
         buttonNumber0.setOnClickListener(new ButtonNumber0OnClick());
@@ -108,8 +111,8 @@ public class MainActivity extends AppCompatActivity{
         Button buttonRide = findViewById(R.id.button_ride);
         buttonRide.setOnClickListener(new ButtonRideOnClick());
 
-        Button buttonExcept = findViewById(R.id.button_except);
-        buttonExcept.setOnClickListener(new ButtonExceptOnClick());
+        Button buttonDivision = findViewById(R.id.button_division);
+        buttonDivision.setOnClickListener(new ButtonExceptOnClick());
 
         Button buttonEqual = findViewById(R.id.button_equal);
         buttonEqual.setOnClickListener(new ButtonEqualOnClick());
@@ -131,7 +134,7 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onClick(View v){
             count += "0";
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
     /**
@@ -141,7 +144,7 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onClick(View v){
             count += "1";
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
 
@@ -152,7 +155,7 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onClick(View v) {
             count += "2";
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
     /**
@@ -162,7 +165,7 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onClick(View v){
             count += "3";
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
     /**
@@ -172,7 +175,7 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onClick(View v){
             count += "4";
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
     /**
@@ -182,7 +185,7 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onClick(View v){
             count += "5";
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
     /**
@@ -192,7 +195,7 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onClick(View v){
             count += "6";
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
     /**
@@ -202,7 +205,7 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onClick(View v){
             count += "7";
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
     /**
@@ -212,7 +215,7 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onClick(View v){
             count += "8";
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
     /**
@@ -222,7 +225,7 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onClick(View v){
             count += "9";
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
     /**
@@ -237,7 +240,7 @@ public class MainActivity extends AppCompatActivity{
             if (isDouble){
                 count = count.substring(0,count.length()-2);
             }
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
     /**
@@ -249,7 +252,7 @@ public class MainActivity extends AppCompatActivity{
             if (!isPoint){
                 count += ".";
                 isPoint = true;
-                textTotal.setText(count);
+                textViewTotal.setText(count);
             }
         }
     }
@@ -259,18 +262,17 @@ public class MainActivity extends AppCompatActivity{
     private class ButtonAddOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            int calculationLength = calculation.length();
-            int countLength = count.length();
-            if (countLength > 0) {
-                calculation += (count + " + ");
-                count = "";
+            if (count.length() > 0) {
                 total = getOperation(total, Double.parseDouble(count));
-                textViewCal.setText(calculation);
-            } else if (calculationLength != 0) {
+                calculation += (count + "＋");
+                count = "";
+            } else if (calculation.length() > 0) {
                 calculation = calculation.substring(0, calculation.length() - 1);
-                calculation += "+";
-                symbol = '+';
+                calculation += "＋";
             }
+            symbol = '+';
+            textViewTotal.setText(("" + total));
+            textViewCal.setText(calculation);
         }
     }
     /**
@@ -279,18 +281,17 @@ public class MainActivity extends AppCompatActivity{
     private class ButtonSubOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            int calculationLength = calculation.length();
-            int countLength = count.length();
-            if (countLength > 0) {
-                calculation += (count + " - ");
-                count = "";
+            if (count.length() > 0) {
                 total = getOperation(total, Double.parseDouble(count));
-                textViewCal.setText(calculation);
-            } else if (calculationLength != 0) {
+                calculation += (count + "－");
+                count = "";
+            } else if (calculation.length() > 0) {
                 calculation = calculation.substring(0, calculation.length() - 1);
-                calculation += "-";
-                symbol = '-';
+                calculation += "－";
             }
+            symbol = '-';
+            textViewTotal.setText(("" + total));
+            textViewCal.setText(calculation);
         }
     }
     /**
@@ -298,16 +299,18 @@ public class MainActivity extends AppCompatActivity{
      */
     private class ButtonRideOnClick implements View.OnClickListener {
         @Override
-        public void onClick(View v){
-            char c = calculation.charAt(calculation.length()-1);
-            if (c == ADD||c == SUB|| c == RIDE || c == DIVISION){
-                calculation = calculation.substring(0,calculation.length()-1);
-                calculation += "*";
-                symbol = '*';
-                return;
+        public void onClick(View v) {
+            if (count.length() > 0) {
+                total = getOperation(total, Double.parseDouble(count));
+                lastNumber = Double.parseDouble(count);
+                calculation += (count + "×");
+                count = "";
+            } else if (calculation.length() > 0) {
+                calculation = calculation.substring(0, calculation.length() - 1);
+                calculation += "×";
             }
-            calculation += (" "+count + " *");
-            total = getOperation(total,Double.parseDouble(count));
+            symbol = '*';
+            textViewTotal.setText(("" + total));
             textViewCal.setText(calculation);
         }
     }
@@ -316,16 +319,18 @@ public class MainActivity extends AppCompatActivity{
      */
     private class ButtonExceptOnClick implements View.OnClickListener {
         @Override
-        public void onClick(View v){
-            char c = calculation.charAt(calculation.length()-1);
-            if (c == ADD||c == SUB|| c == RIDE || c == DIVISION){
-                calculation = calculation.substring(0,calculation.length()-1);
-                calculation += "/";
-                symbol = '/';
-                return;
+        public void onClick(View v) {
+            if (count.length() > 0) {
+                total += getOperation(lastNumber, Double.parseDouble(count))-lastNumber;
+                lastNumber = Double.parseDouble(count);
+                calculation += (count + "÷");
+                count = "";
+            } else if (calculation.length() > 0) {
+                calculation = calculation.substring(0, calculation.length() - 1);
+                calculation += "÷";
             }
-            calculation += (" "+count + " /");
-            total = getOperation(total,Double.parseDouble(count));
+            symbol = '/';
+            textViewTotal.setText(("" + total));
             textViewCal.setText(calculation);
         }
     }
@@ -336,10 +341,19 @@ public class MainActivity extends AppCompatActivity{
     private class ButtonEqualOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v){
-            total = getOperation(total,Double.parseDouble(count));
+            if (count.length() > 0){
+                total = getOperation(total,Double.parseDouble(count));
+            }
+            calculation += count;
             count = "" + total;
-            calculation = "";
+
+            if (0 == Double.parseDouble(count)%1){
+                count = count.substring(0,count.length()-2);
+            }
+            symbol = ' ';
+            textViewTotal.setText(count);
             textViewCal.setText(calculation);
+            calculation = "";
         }
     }
     /**
@@ -353,7 +367,7 @@ public class MainActivity extends AppCompatActivity{
             } else{
                 count = count.substring(1);
             }
-            textTotal.setText(count);
+            textViewTotal.setText(count);
         }
     }
     /**
@@ -364,8 +378,10 @@ public class MainActivity extends AppCompatActivity{
         public void onClick(View v){
             count = "";
             calculation = "";
+            symbol = '+';
+            lastNumber = 0;
             total = 0;
-            textTotal.setText(count);
+            textViewTotal.setText(count);
             textViewCal.setText(calculation);
         }
     }
@@ -376,7 +392,7 @@ public class MainActivity extends AppCompatActivity{
             int length = count.length();
             if (length>0){
                 count = count.substring(0,length-1);
-                textTotal.setText(count);
+                textViewTotal.setText(count);
             }
         }
     }
@@ -390,17 +406,12 @@ public class MainActivity extends AppCompatActivity{
      */
     private double getOperation(double number,double otherNumber){
         double result = number;
-        if (symbol == ADD){
-            result += otherNumber;
-        }
-        if (symbol == SUB){
-            total -= otherNumber;
-        }
-        if (symbol == RIDE){
-            total *= otherNumber;
-        }
-        if (symbol == DIVISION){
-            total /= otherNumber;
+        switch (symbol){
+            case ADD:result += otherNumber;break;
+            case SUB:result -= otherNumber;break;
+            case RIDE:result *= otherNumber;break;
+            case DIVISION:result /= otherNumber;break;
+            default: break;
         }
         return result;
     }
