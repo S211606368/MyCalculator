@@ -16,31 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
  * @value DIVISION
  */
 public class MainActivity extends AppCompatActivity {
-    /**
-     * calculation 存储的是你在计算器上输入的运算式，比如123+456+568
-     */
+
     String calculation = "";
-
-    /**
-     * total 是当前计算器上输入的运算式数值的合计，比如123+456+789=1368，total就会存储1368这个数值
-     */
     double total = 0;
-
     double lastNumber = 0;
-
-    /**
-     * count 是计算器上当前输入数值的显示，比如123%，count上的数值会在使用符号后加入到calculation中
-     */
     String count = "";
-
-    /**
-     * symbol 是符号标记用于判断运算时的符号
-     */
     char symbol = '+';
-
-    /**
-     * isPoint 判断count中是否已存在小数点
-     */
     boolean isPoint = false;
 
     private static final char ADD = '+';
@@ -48,14 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static final char RIDE = '*';
     private static final char DIVISION = '/';
 
-    /**
-     * textViewCal 用于显示calculation的文本框
-     */
     TextView textViewCal;
-
-    /**
-     * textTotal 用于显示count的文本框
-     */
     TextView textViewTotal;
 
     @Override
@@ -133,8 +107,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonNumber0OnClick implements View.OnClickListener {
         @Override
         public void onClick(View v){
-            count += "0";
-            textViewTotal.setText(count);
+            getNumber("0");
         }
     }
     /**
@@ -143,8 +116,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonNumber1OnClick implements View.OnClickListener {
         @Override
         public void onClick(View v){
-            count += "1";
-            textViewTotal.setText(count);
+            getNumber("1");
         }
     }
 
@@ -154,8 +126,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonNumber2OnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            count += "2";
-            textViewTotal.setText(count);
+            getNumber("2");
         }
     }
     /**
@@ -164,8 +135,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonNumber3OnClick implements View.OnClickListener {
         @Override
         public void onClick(View v){
-            count += "3";
-            textViewTotal.setText(count);
+            getNumber("3");
         }
     }
     /**
@@ -174,8 +144,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonNumber4OnClick implements View.OnClickListener {
         @Override
         public void onClick(View v){
-            count += "4";
-            textViewTotal.setText(count);
+            getNumber("4");
         }
     }
     /**
@@ -184,8 +153,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonNumber5OnClick implements View.OnClickListener {
         @Override
         public void onClick(View v){
-            count += "5";
-            textViewTotal.setText(count);
+            getNumber("5");
         }
     }
     /**
@@ -194,8 +162,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonNumber6OnClick implements View.OnClickListener {
         @Override
         public void onClick(View v){
-            count += "6";
-            textViewTotal.setText(count);
+            getNumber("6");
         }
     }
     /**
@@ -204,8 +171,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonNumber7OnClick implements View.OnClickListener {
         @Override
         public void onClick(View v){
-            count += "7";
-            textViewTotal.setText(count);
+            getNumber("7");
         }
     }
     /**
@@ -214,8 +180,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonNumber8OnClick implements View.OnClickListener {
         @Override
         public void onClick(View v){
-            count += "8";
-            textViewTotal.setText(count);
+            getNumber("8");
         }
     }
     /**
@@ -224,8 +189,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonNumber9OnClick implements View.OnClickListener {
         @Override
         public void onClick(View v){
-            count += "9";
-            textViewTotal.setText(count);
+            getNumber("9");
         }
     }
     /**
@@ -416,5 +380,12 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
-
+    /**
+     * 数字键的数字输入
+     * @param number 按钮上的数字
+     */
+    private void getNumber(String number){
+        count += number;
+        textViewTotal.setText(count);
+    }
 }
