@@ -7,8 +7,6 @@ import com.example.mycalculator.pojo.User;
  * @author LIN
  */
 public interface UserDaoImpl {
-    User user = new User();
-
     /**
      * 新增用户
      * @param user

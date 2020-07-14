@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @value SUB
  * @value RIDE
  * @value DIVISION
+ * @value POINT
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static final char SUB = '-';
     private static final char RIDE = '*';
     private static final char DIVISION = '/';
+    private static final char POINT = '.';
 
     TextView textViewCal;
     TextView textViewTotal;
@@ -226,17 +228,8 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonAddOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            if (count.length() > 0) {
-                total = getOperation(total, Double.parseDouble(count));
-                calculation += (count + "＋");
-                count = "";
-            } else if (calculation.length() > 0) {
-                calculation = calculation.substring(0, calculation.length() - 1);
-                calculation += "＋";
-            }
+            setOperator("＋");
             symbol = '+';
-            textViewTotal.setText(("" + total));
-            textViewCal.setText(calculation);
         }
     }
     /**
@@ -245,18 +238,10 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonSubOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            if (count.length() > 0) {
-                total = getOperation(total, Double.parseDouble(count));
-                calculation += (count + "－");
-                count = "";
-            } else if (calculation.length() > 0) {
-                calculation = calculation.substring(0, calculation.length() - 1);
-                calculation += "－";
-            }
+            setOperator("－");
             symbol = '-';
-            textViewTotal.setText(("" + total));
-            textViewCal.setText(calculation);
         }
+
     }
     /**
      * 乘号按钮
@@ -264,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonRideOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            if (count.length() > 0) {
+            /*if (count.length() > 0) {
                 total = getOperation(total, Double.parseDouble(count));
                 lastNumber = Double.parseDouble(count);
                 calculation += (count + "×");
@@ -273,9 +258,11 @@ public class MainActivity extends AppCompatActivity {
                 calculation = calculation.substring(0, calculation.length() - 1);
                 calculation += "×";
             }
-            symbol = '*';
+
             textViewTotal.setText(("" + total));
-            textViewCal.setText(calculation);
+            textViewCal.setText(calculation);*/
+            setOperator("×");
+            symbol = '*';
         }
     }
     /**
@@ -284,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonExceptOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            if (count.length() > 0) {
+            /*if (count.length() > 0) {
                 total += getOperation(lastNumber, Double.parseDouble(count))-lastNumber;
                 lastNumber = Double.parseDouble(count);
                 calculation += (count + "÷");
@@ -293,9 +280,11 @@ public class MainActivity extends AppCompatActivity {
                 calculation = calculation.substring(0, calculation.length() - 1);
                 calculation += "÷";
             }
-            symbol = '/';
+
             textViewTotal.setText(("" + total));
-            textViewCal.setText(calculation);
+            textViewCal.setText(calculation);*/
+            setOperator("÷");
+            symbol = '/';
         }
     }
 
@@ -318,6 +307,9 @@ public class MainActivity extends AppCompatActivity {
             textViewTotal.setText(count);
             textViewCal.setText(calculation);
             calculation = "";
+            if (isPoint){
+                isPoint = false;
+            }
         }
     }
     /**
@@ -347,20 +339,29 @@ public class MainActivity extends AppCompatActivity {
             total = 0;
             textViewTotal.setText(count);
             textViewCal.setText(calculation);
+            isPoint = false;
         }
     }
 
+    /**
+     * 删除按钮
+     */
     private class ButtonDelOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v){
             int length = count.length();
             if (length>0){
+                if (POINT == count.charAt(count.length()-1)){
+                    isPoint = false;
+                }
                 count = count.substring(0,length-1);
                 textViewTotal.setText(count);
             }
+/*            if (isPoint){
+
+            }*/
         }
     }
-
 
     /**
      * 运算方法,使用时需要输入两个double类型的值，运算式为number ＋\－\×\÷ otherNumber
@@ -378,6 +379,26 @@ public class MainActivity extends AppCompatActivity {
             default: break;
         }
         return result;
+    }
+
+    /**
+     * 四则运算的界面显示
+     * @param strSymbol string类型的符号如：＋，－，×，÷
+     */
+    private void setOperator(String strSymbol){
+        if (count.length() > 0) {
+            total = getOperation(total, Double.parseDouble(count));
+            calculation += (count + strSymbol);
+            count = "";
+        } else if (calculation.length() > 0) {
+            calculation = calculation.substring(0, calculation.length() - 1);
+            calculation += strSymbol;
+        }
+        textViewTotal.setText(("" + total));
+        textViewCal.setText(calculation);
+        if (isPoint){
+            isPoint = false;
+        }
     }
 
     /**
