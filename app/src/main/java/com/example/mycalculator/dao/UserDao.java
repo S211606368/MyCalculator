@@ -14,6 +14,7 @@ public class UserDao implements UserDaoImpl{
     private SqLietConnect sqLiteConnect;
 
     public UserDao(Context context){
+
         sqLiteConnect = new SqLietConnect(context,1);
     }
 
@@ -48,14 +49,15 @@ public class UserDao implements UserDaoImpl{
 
 
     @Override
-    public void updateUser(String userID, String userPassword) {
+    public void updateUser(String userId, String userPassword) {
         SQLiteDatabase sqLiteDatabase = sqLiteConnect.getWritableDatabase();
         String sql = "update User set user_password = ? where user_id = ?";
-        sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.execSQL(sql,new String[]{userPassword,userId});
     }
 
     @Override
-    public void selectUser(int id) {
+    public void selectUser(String userID) {
+        SQLiteDatabase sqLiteDatabase = sqLiteConnect.getReadableDatabase();
 
     }
 }
