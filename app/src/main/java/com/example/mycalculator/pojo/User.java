@@ -1,20 +1,36 @@
 package com.example.mycalculator.pojo;
 
 /**
- * 用户类里面有用户昵称username，用户账号user，用户密码passw
+ * 用户类
  * @author LIN
  */
 public class User {
-    private String id;
+
+    /**
+     * id账号编码
+     * username账户
+     * userPassword账号密码
+     */
+    private int id;
     private String userName;
-    private String userId;
     private String userPassword;
 
-    public String getId() {
+    public User(){
+        super();
+    }
+
+    public User(int id,String userName,String userPassword) {
+        super();
+        this.id = id;
+        this.userName = userName;
+        this.userPassword = userPassword;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -24,14 +40,6 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getUserPassword() {

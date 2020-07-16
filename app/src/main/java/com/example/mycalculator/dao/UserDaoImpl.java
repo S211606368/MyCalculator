@@ -2,6 +2,8 @@ package com.example.mycalculator.dao;
 
 import com.example.mycalculator.pojo.User;
 
+import java.util.List;
+
 /**
  * User对象持久化类的接口
  * @author LIN
@@ -27,15 +29,15 @@ public interface UserDaoImpl {
 
     /**
      * 忘记密码时，根据用户账号信息修改用户密码
-     * @param userId
+     * @param userName
      * @param userPassword
      */
-    public void updateUser(String userId,String userPassword);
+    public void updateUser(String userName,String userPassword);
 
     /**
      * 查询用户信息
-     * @param userId
+     * @param userName
+     * @return ArrayList<User>
      */
-    public void selectUser(String userId);
-
+    public List<User> selectUser(String userName);
 }

@@ -23,43 +23,10 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/nameText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="3"
-                android:gravity="center"
-                android:textIsSelectable="false"
-                android:inputType="none"
-                android:maxLength="2"
-                android:text="@string/userName"
-                android:textSize="20sp"
-                android:textColor="#FFFFFF"/>
-
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/nameInput"
-                android:inputType="text"
-                android:background="#AAAAAAAA"
-                android:maxLength="10"
-                android:text=""
-                android:textSize="20sp"
-                android:textColor="#FFFFFF"
-                android:autofillHints="no"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <TextView
                 android:id="@+id/userText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="3"
+                android:ems="4"
                 android:gravity="center"
                 android:textIsSelectable="false"
                 android:inputType="none"
@@ -90,10 +57,10 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/passText"
+                android:id="@+id/passwordText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="3"
+                android:ems="4"
                 android:gravity="center"
                 android:textIsSelectable="false"
                 android:inputType="none"
@@ -104,6 +71,40 @@
 
             <EditText
                 android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="16"
+                android:hint="@string/passwordInput"
+                android:inputType="textPassword"
+                android:digits="@string/inputType_digits"
+                android:background="#AAAAAAAA"
+                android:maxLength="16"
+                android:text=""
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:autofillHints="no"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/rePasswordText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="4"
+                android:gravity="center"
+                android:textIsSelectable="false"
+                android:inputType="none"
+                android:maxLength="4"
+                android:text="@string/rePassword"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"/>
+
+            <EditText
+                android:id="@+id/rePassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="16"

@@ -1,4 +1,4 @@
-package com.example.mycalculator;
+package com.example.mycalculator.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,24 +10,32 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mycalculator.R;
+import com.example.mycalculator.dao.UserDao;
+import com.example.mycalculator.pojo.User;
+
 /**
  * 登录界面
  * @author LIN
  */
-public class Register extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     Button register;
     TextView ownUser;
 
     String userName;
-    String userId;
     String userPassword;
+    String rePassword;
     EditText userNameText;
-    EditText userIdText;
     EditText userPasswordText;
+    EditText rePasswordText;
 
-    private static final int TWO = 2;
-    private static final int SIX = 6;
+    UserDao userDao = new UserDao(this);
+    User user;
+
+    public RegisterActivity(){
+        userDao = new UserDao(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -40,54 +48,65 @@ public class Register extends AppCompatActivity {
         ownUser = findViewById(R.id.ownUser);
         ownUser.setOnClickListener(new OwnUserButtonOnClick());
 
-        userNameText = findViewById(R.id.name);
-        userName = userNameText.getText().toString();
-
-        userIdText = findViewById(R.id.user);
-        userId = userIdText.getText().toString();
+        userNameText = findViewById(R.id.user);
 
         userPasswordText = findViewById(R.id.password);
-        userPassword = userPasswordText.getText().toString();
+
+        rePasswordText = findViewById(R.id.rePassword);
     }
 
+    /**
+     *
+     */
     public class RegisterButtonOnclick implements View.OnClickListener{
 
         @Override
         public void onClick(View view) {
             if (isRegister()){
-                Intent intent = new Intent(Register.this,Login.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
-                Toast.makeText(Register.this,"注册成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
             } else{
-                Intent intent = new Intent(Register.this,Register.class);
-                startActivity(intent);
-                Toast.makeText(Register.this,"昵称、账号、密码不正确，或账号已存在",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this,"昵称、账号、密码不正确，或账号已存在",Toast.LENGTH_SHORT).show();
             }
 
         }
     }
 
+    /**
+     * 判断该账号密码是否能注册
+     * @return boolean
+     */
     private boolean isRegister(){
         boolean isRegister = true;
         userName = userNameText.getText().toString();
-        userId = userIdText.getText().toString();
         userPassword = userPasswordText.getText().toString();
+        rePassword = rePasswordText.getText().toString();
 
-        if (userName.length() < TWO){
+        user = userDao.selectUser(userName).get(0);
+
+        int passwordLength = 6;
+
+        if (userName.length() < passwordLength){
             isRegister = false;
-        }else if (userId.length() < SIX){
+        }else if (userPassword.length() < passwordLength){
             isRegister = false;
-        }else if (userPassword.length() <SIX){
+        }else if (userName.equals(user.getUserName())) {
+            isRegister = false;
+        }else if (!userPassword.equals(rePassword)){
             isRegister = false;
         }
         return isRegister;
     }
 
+    /**
+     * 已拥有账号按钮，返回登录界面
+     */
     public class OwnUserButtonOnClick implements View.OnClickListener{
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(Register.this,Login.class);
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
         }
     }
