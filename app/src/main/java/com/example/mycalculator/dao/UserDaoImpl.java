@@ -19,7 +19,7 @@ public interface UserDaoImpl {
      * 删除用户
      * @param id
      */
-    public void deleteUser(int id);
+    public void deleteUser(int userId);
 
     /**
      * 登录后修改用户数据

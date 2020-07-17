@@ -2,6 +2,8 @@ package com.example.mycalculator.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +16,6 @@ import com.example.mycalculator.R;
 import com.example.mycalculator.dao.UserDao;
 import com.example.mycalculator.pojo.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,21 +29,21 @@ public class LoginActivity extends AppCompatActivity {
     TextView forgetPassword;
     TextView log;
 
+    TextView passwordSwitch;
+
     String userName;
     String userPassword;
     EditText userNameText;
     EditText userPasswordText;
 
     User user;
-    UserDao userDao;
+    UserDao userDao = new UserDao(LoginActivity.this);
+
+    boolean isShowPassword = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        try {
-            userDao = new UserDao(LoginActivity.this);
-        }catch (Exception e){
-        }
 
         setContentView(R.layout.login);
 
@@ -60,6 +61,9 @@ public class LoginActivity extends AppCompatActivity {
 
         log = findViewById(R.id.log);
         log.setOnClickListener(new LogOnClick());
+
+        passwordSwitch = findViewById(R.id.passwordText);
+        passwordSwitch.setOnClickListener(new PasswordSwitchOnClick());
     }
 
     /**
@@ -100,9 +104,14 @@ public class LoginActivity extends AppCompatActivity {
         boolean isLogin = true;
         userName = userNameText.getText().toString();
         userPassword = userPasswordText.getText().toString();
-
-        List<User> arrayList = new ArrayList<>();
+        System.out.println("------------userName的值-----------");
+        System.out.println(userName);
+        System.out.println("------------userPassword的值-----------");
+        System.out.println(userPassword);
+        List<User> arrayList;
         arrayList = userDao.selectUser(userName);
+        System.out.println("------------arrayList的值-----------");
+        System.out.println(arrayList);
         if (arrayList == null || arrayList.size() == 0){
             isLogin = false;
         } else {
@@ -129,5 +138,24 @@ public class LoginActivity extends AppCompatActivity {
         public void onClick(View view) {
 
         }
+    }
+
+    public class PasswordSwitchOnClick implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            showPassword(userPasswordText);
+        }
+    }
+
+    private void showPassword(EditText userPasswordText){
+        if (isShowPassword){
+            userPasswordText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        } else{
+            userPasswordText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }
+        isShowPassword = !isShowPassword;
+        userPassword = userPasswordText.getText().toString();
+        userPasswordText.setSelection(userPassword.length());
     }
 }

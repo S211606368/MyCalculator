@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity"
+    tools:context=".activity.LoginActivity"
     android:background="#DD000000">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="@dimen/y20"
+        android:layout_marginTop="@dimen/y200"
+        android:layout_marginEnd="@dimen/y20"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="@dimen/y20">
 
             <TextView
                 android:id="@+id/userText"
@@ -33,7 +33,7 @@
                 android:inputType="none"
                 android:maxLength="2"
                 android:text="@string/user"
-                android:textSize="20sp"
+                android:textSize="@dimen/x40"
                 android:textColor="#FFFFFF"/>
 
             <EditText
@@ -47,7 +47,7 @@
                 android:background="#AAAAAAAA"
                 android:maxLength="16"
                 android:text=""
-                android:textSize="20sp"
+                android:textSize="@dimen/x40"
                 android:textColor="#FFFFFF"
                 android:autofillHints="no"/>
         </LinearLayout>
@@ -55,7 +55,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="@dimen/y20">
 
             <TextView
                 android:id="@+id/passwordText"
@@ -67,7 +67,7 @@
                 android:inputType="none"
                 android:maxLength="2"
                 android:text="@string/password"
-                android:textSize="20sp"
+                android:textSize="@dimen/x40"
                 android:textColor="#FFFFFF"/>
 
             <EditText
@@ -82,7 +82,7 @@
                 android:maxLength="16"
                 android:text=""
                 android:textColor="#FFFFFF"
-                android:textSize="20sp"
+                android:textSize="@dimen/x40"
                 android:autofillHints="no"/>
         </LinearLayout>
 
@@ -95,10 +95,10 @@
                 android:id="@+id/register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/x40"
                 android:background="@drawable/login_background"
                 android:text="@string/register"
-                android:textSize="30sp"
+                android:textSize="@dimen/x60"
                 app:layout_constraintEnd_toStartOf="@+id/log"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/login"
@@ -109,11 +109,11 @@
                 android:id="@+id/login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/x40"
+                android:layout_marginEnd="@dimen/x40"
                 android:background="@drawable/login_background"
                 android:text="@string/login"
-                android:textSize="30sp"
+                android:textSize="@dimen/x60"
                 android:textColor="#FFFFFF"
                 style="@style/AppTheme"/>
 
@@ -128,39 +128,29 @@
                 android:id="@+id/forgetPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="@dimen/y20"
+                android:layout_marginBottom="@dimen/y20"
                 android:ems="4"
                 android:gravity="center"
                 android:maxLength="4"
                 android:text="@string/forgetPassword"
-                android:textSize="20sp"
+                android:textSize="@dimen/x40"
                 android:textColor="#FF9800"/>
 
             <TextView
                 android:id="@+id/log"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="@dimen/y20"
+                android:layout_marginEnd="@dimen/x40"
+                android:layout_marginBottom="@dimen/y20"
                 android:ems="4"
                 android:gravity="center"
                 android:maxLength="4"
                 android:text="@string/log"
-                android:textSize="20sp"
+                android:textSize="@dimen/x40"
                 android:textColor="#FFFFFF"/>
         </LinearLayout>
     </LinearLayout>
-
-
-
-
-
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

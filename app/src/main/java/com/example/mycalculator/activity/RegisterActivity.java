@@ -2,6 +2,8 @@ package com.example.mycalculator.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,19 +25,21 @@ public class RegisterActivity extends AppCompatActivity {
     Button register;
     TextView ownUser;
 
-    String userName;
-    String userPassword;
-    String rePassword;
     EditText userNameText;
     EditText userPasswordText;
     EditText rePasswordText;
 
-    UserDao userDao = new UserDao(this);
+    TextView passwordShow;
+    TextView rePasswordShow;
+
+    String userName;
+    String userPassword;
+    String rePassword;
+
+    UserDao userDao = new UserDao(RegisterActivity.this);
     User user;
 
-    public RegisterActivity(){
-        userDao = new UserDao(this);
-    }
+    boolean isShowPassword = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -53,6 +57,11 @@ public class RegisterActivity extends AppCompatActivity {
         userPasswordText = findViewById(R.id.password);
 
         rePasswordText = findViewById(R.id.rePassword);
+
+        passwordShow = findViewById(R.id.passwordText);
+        passwordShow.setOnClickListener(new PasswordSwitchOnClick());
+        rePasswordShow = findViewById(R.id.rePasswordText);
+        rePasswordShow.setOnClickListener(new RePasswordSwitchOnClick());
     }
 
     /**
@@ -109,5 +118,37 @@ public class RegisterActivity extends AppCompatActivity {
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
         }
+    }
+    /**
+     * 点击显示密码
+     */
+    public class PasswordSwitchOnClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            showPassword(userPasswordText);
+        }
+    }
+
+    /**
+     * 点击显示确认密码
+     */
+    public class RePasswordSwitchOnClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            showPassword(rePasswordText);
+        }
+    }
+
+    private void showPassword(EditText userPasswordText){
+        if (isShowPassword) {
+            userPasswordText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        } else {
+            userPasswordText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }
+        isShowPassword = !isShowPassword;
+        userPassword = userPasswordText.getText().toString();
+        userPasswordText.setSelection(userPassword.length());
     }
 }

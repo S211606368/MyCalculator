@@ -13,9 +13,9 @@ public class SqLiteConnect extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     private static final String TABLE_NAME = "User";
-    private static final String TABLE_ID = "_ID";
+    private static final String TABLE_ID = "USER_ID";
     private static final String TABLE_USER_NAME = "USER_NAME";
-    private static final String TABLE_USER_PASSWORD = "PASSWORD";
+    private static final String TABLE_USER_PASSWORD = "USER_PASSWORD";
 
     public String sql;
 

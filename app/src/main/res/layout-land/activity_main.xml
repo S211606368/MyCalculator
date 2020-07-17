@@ -31,7 +31,7 @@
                 android:text="@string/openParen"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20" />
 
             <Button
                 android:id="@+id/button_closeParen"
@@ -42,7 +42,7 @@
                 android:text="@string/closeParen"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_memoryClear"
@@ -53,7 +53,7 @@
                 android:text="@string/memoryClear"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_memoryAdd"
@@ -64,7 +64,7 @@
                 android:text="@string/memoryAdd"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_memorySub"
@@ -75,7 +75,7 @@
                 android:text="@string/memorySub"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_memoryRead"
@@ -86,7 +86,7 @@
                 android:text="@string/memoryRead"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_clear"
@@ -96,7 +96,7 @@
                 android:background="@drawable/function_background"
                 android:text="@string/clear"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_sign"
@@ -106,7 +106,7 @@
                 android:background="@drawable/function_background"
                 android:text="@string/sign"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_del"
@@ -116,7 +116,7 @@
                 android:background="@drawable/function_background"
                 android:text="@string/del"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_division"
@@ -126,7 +126,7 @@
                 android:background="@drawable/symbol_background"
                 android:text="@string/division"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
         </TableRow>
 
@@ -142,7 +142,7 @@
                 android:text="@string/secondFunction"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_xSquare"
@@ -153,7 +153,7 @@
                 android:text="@string/xSquare"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_xCube"
@@ -164,7 +164,7 @@
                 android:text="@string/xCube"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_yPowerOfX"
@@ -175,7 +175,7 @@
                 android:text="@string/yPowerOfX"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_xPowerOfE"
@@ -186,7 +186,7 @@
                 android:text="@string/xPowerOfE"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_xPowerOfTen"
@@ -197,7 +197,7 @@
                 android:text="@string/xPowerOfTen"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_7"
@@ -207,7 +207,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/seven"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_8"
@@ -217,7 +217,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/eight"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_9"
@@ -227,7 +227,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/nine"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_ride"
@@ -237,7 +237,7 @@
                 android:background="@drawable/symbol_background"
                 android:text="@string/ride"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
         </TableRow>
 
         <TableRow android:layout_marginTop="5dp">
@@ -251,7 +251,7 @@
                 android:text="@string/rad"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_squareRoot"
@@ -262,7 +262,7 @@
                 android:text="@string/squareRoot"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_cubeRoot"
@@ -273,7 +273,7 @@
                 android:text="@string/cubeRoot"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_yRoot"
@@ -284,7 +284,7 @@
                 android:text="@string/yRoot"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_ln"
@@ -295,7 +295,7 @@
                 android:text="@string/ln"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_log10"
@@ -306,7 +306,7 @@
                 android:text="@string/log10"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
 
             <Button
@@ -317,7 +317,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/four"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_5"
@@ -327,7 +327,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/five"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_6"
@@ -337,7 +337,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/six"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_sub"
@@ -347,7 +347,7 @@
                 android:background="@drawable/symbol_background"
                 android:text="@string/subtract"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
         </TableRow>
 
@@ -362,7 +362,7 @@
                 android:text="@string/xFactorial"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_sin"
@@ -373,7 +373,7 @@
                 android:text="@string/sin"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_cos"
@@ -384,7 +384,7 @@
                 android:text="@string/cos"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_tan"
@@ -395,7 +395,7 @@
                 android:text="@string/tan"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_e"
@@ -406,7 +406,7 @@
                 android:text="@string/e"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_ee"
@@ -417,7 +417,7 @@
                 android:text="@string/ee"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
 
             <Button
@@ -428,7 +428,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/one"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_2"
@@ -438,7 +438,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/two"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_3"
@@ -448,7 +448,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/three"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_add"
@@ -458,7 +458,7 @@
                 android:background="@drawable/symbol_background"
                 android:text="@string/add"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
         </TableRow>
 
         <TableRow android:layout_marginTop="5dp">
@@ -472,7 +472,7 @@
                 android:text="@string/rad"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_sinh"
@@ -483,7 +483,7 @@
                 android:text="@string/sinh"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_cosh"
@@ -494,7 +494,7 @@
                 android:text="@string/cosh"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_tanh"
@@ -505,7 +505,7 @@
                 android:text="@string/tanh"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_pi"
@@ -516,7 +516,7 @@
                 android:text="@string/pi"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_rand"
@@ -527,7 +527,7 @@
                 android:text="@string/rand"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_per"
@@ -537,7 +537,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/percent"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_0"
@@ -561,7 +561,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/point"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
 
             <Button
                 android:id="@+id/button_equal"
@@ -571,7 +571,7 @@
                 android:background="@drawable/symbol_background"
                 android:text="@string/equal"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp" />
+                android:textSize="@dimen/x20"/>
         </TableRow>
     </TableLayout>
 
@@ -583,7 +583,7 @@
         android:gravity="center_vertical|end"
         android:text=""
         android:textColor="#FFFFFFFF"
-        android:textSize="15sp"
+        android:textSize="@dimen/x30"
         app:layout_constraintBottom_toTopOf="@+id/text_total"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -595,7 +595,7 @@
         android:text=""
         android:gravity="center_vertical|end"
         android:textColor="#FFFFFFFF"
-        android:textSize="25sp"
+        android:textSize="@dimen/x60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_cal" />
 

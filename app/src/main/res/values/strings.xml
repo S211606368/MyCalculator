@@ -73,6 +73,6 @@
     <string name="RePassword">请输入新的密码</string>
     <string name="reLogin">返回登录</string>
     <string name="changePassword">修改密码</string>
-    <string name="inputType_digits">1234567890abcdefghijklmopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_</string>
+    <string name="inputType_digits">1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_</string>
 
 </resources>

@@ -2,9 +2,12 @@ package com.example.mycalculator.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,16 +28,18 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     EditText userNameText;
     EditText userPasswordText;
     EditText rePasswordText;
+
+    TextView passwordShow;
+    TextView rePasswordShow;
+
     String userName;
     String userPassword;
     String rePassword;
 
-    UserDao userDao;
+    UserDao userDao = new UserDao(ForgetPasswordActivity.this);
     User user;
 
-    public ForgetPasswordActivity(){
-        userDao = new UserDao(this);
-    }
+    boolean isShowPassword = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +57,19 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
         userPasswordText = findViewById(R.id.password);
 
+
         rePasswordText = findViewById(R.id.rePassword);
+
+        passwordShow = findViewById(R.id.passwordText);
+        passwordShow.setOnClickListener(new PasswordSwitchOnClick());
+        rePasswordShow = findViewById(R.id.rePasswordText);
+        rePasswordShow.setOnClickListener(new RePasswordSwitchOnClick());
 
     }
 
+    /**
+     * 反回登登录界面按钮
+     */
     public class ReLoginButtonOnClick implements View.OnClickListener{
 
         @Override
@@ -65,6 +79,9 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 修改密码按钮
+     */
     public class ChangePasswordButtonOnClick implements View.OnClickListener{
 
         @Override
@@ -79,6 +96,10 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 判断是否可以修改密码
+     * @return
+     */
     public boolean isChange(){
         boolean isChange = true;
         userName = userNameText.getText().toString();
@@ -98,5 +119,38 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             isChange = false;
         }
         return isChange;
+    }
+
+    /**
+     * 点击显示密码
+     */
+    public class PasswordSwitchOnClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            showPassword(userPasswordText);
+        }
+    }
+
+    /**
+     * 点击显示确认密码
+     */
+    public class RePasswordSwitchOnClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            showPassword(rePasswordText);
+        }
+    }
+
+    private void showPassword(EditText userPasswordText){
+        if (isShowPassword) {
+            userPasswordText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        } else {
+            userPasswordText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }
+        isShowPassword = !isShowPassword;
+        userPassword = userPasswordText.getText().toString();
+        userPasswordText.setSelection(userPassword.length());
     }
 }

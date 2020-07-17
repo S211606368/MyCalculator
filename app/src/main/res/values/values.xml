@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_width">250px</dimen>
+    <dimen name="button_hight">250px</dimen>
+    <dimen name="button_side">250px</dimen>
+    <dimen name="button_sp">45dp</dimen>
+    <dimen name="total_sp">45dp</dimen>
+    <dimen name="cal_sp">25dp</dimen>
+</resources>

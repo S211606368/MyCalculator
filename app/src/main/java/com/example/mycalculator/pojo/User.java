@@ -11,7 +11,7 @@ public class User {
      * username账户
      * userPassword账号密码
      */
-    private int id;
+    private int userId;
     private String userName;
     private String userPassword;
 
@@ -19,19 +19,18 @@ public class User {
         super();
     }
 
-    public User(int id,String userName,String userPassword) {
-        super();
-        this.id = id;
+    public User(int userId, String userName, String userPassword) {
+        this.userId = userId;
         this.userName = userName;
         this.userPassword = userPassword;
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {

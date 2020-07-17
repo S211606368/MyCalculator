@@ -39,12 +39,12 @@ public class UserDao implements UserDaoImpl{
 
     /**
      * 删除用户，没有管理员界面暂时没用
-     * @param id 用户编号
+     * @param userId 用户编号
      */
     @Override
-    public void deleteUser(int id) {
+    public void deleteUser(int userId) {
         SQLiteDatabase sqLiteDatabase = sqLiteConnect.getWritableDatabase();
-        sqLiteDatabase.delete("User","id=?",new String[]{String.valueOf(id)});
+        sqLiteDatabase.delete("User","user_id=?",new String[]{String.valueOf(userId)});
         sqLiteDatabase.close();
     }
 
@@ -58,7 +58,7 @@ public class UserDao implements UserDaoImpl{
         ContentValues contentValues = new ContentValues();
         contentValues.put("USER_NAME", user.getUserName());
         contentValues.put("USER_PASSWORD", user.getUserPassword());
-        sqLiteDatabase.update("User", contentValues, "ID", new String[]{user.getUserName()});
+        sqLiteDatabase.update("User", contentValues, "User_ID", new String[]{user.getUserName()});
         sqLiteDatabase.close();
     }
 
@@ -75,6 +75,11 @@ public class UserDao implements UserDaoImpl{
         sqLiteDatabase.close();
     }
 
+    /**
+     * 更具账号查找用户
+     * @param userName
+     * @return List<User>
+     */
     @Override
     public List<User> selectUser(String userName) {
         SQLiteDatabase sqLiteDatabase = sqLiteConnect.getReadableDatabase();
@@ -83,24 +88,24 @@ public class UserDao implements UserDaoImpl{
 
         User user = new User();
 
-        String sql = "select * from User where user_name = ?";
+        String sql = "select * from user where user_name = ?";
         Cursor cursor;
         cursor = sqLiteDatabase.rawQuery(sql,new String[]{userName});
 
         if(cursor.moveToFirst()){
-            user.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+            user.setUserId(cursor.getInt(cursor.getColumnIndex("user_id")));
             user.setUserName(cursor.getString(cursor.getColumnIndex("user_name")));
             user.setUserPassword(cursor.getString(cursor.getColumnIndex("user_password")));
             arrayList.add(user);
+            System.out.println("--------UserDao中的user值----------");
+            System.out.println(user.getUserName());
         }
 
-        closeDatabase(sqLiteDatabase,cursor);
+
+        cursor.close();
+        sqLiteDatabase.close();
 
         return arrayList;
     }
 
-    public void closeDatabase(SQLiteDatabase sqLiteDatabase,Cursor cursor){
-        cursor.close();
-        sqLiteDatabase.close();
-    }
 }
