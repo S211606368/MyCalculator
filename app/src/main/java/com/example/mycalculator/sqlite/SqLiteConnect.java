@@ -29,6 +29,7 @@ public class SqLiteConnect extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("create table if not exists ");
         stringBuffer.append(TABLE_NAME + "(");

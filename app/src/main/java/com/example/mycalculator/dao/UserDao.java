@@ -17,6 +17,11 @@ import java.util.List;
 public class UserDao implements UserDaoImpl{
     private SqLiteConnect sqLiteConnect;
 
+    SQLiteDatabase sqLiteDatabase = null;
+
+    List<User> arrayList;
+    Cursor cursor;
+
     public UserDao(Context context){
 
         sqLiteConnect = new SqLiteConnect(context,1);
@@ -28,13 +33,23 @@ public class UserDao implements UserDaoImpl{
      */
     @Override
     public void addUser(User user) {
-        SQLiteDatabase sqLiteDatabase = sqLiteConnect.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("USER_NAME",user.getUserName());
-        contentValues.put("USER_PASSWORD",user.getUserPassword());
+        try {
+            sqLiteDatabase = sqLiteConnect.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("USER_NAME",user.getUserName());
+            contentValues.put("USER_PASSWORD",user.getUserPassword());
 
-        sqLiteDatabase.insert("User",null,contentValues);
-        sqLiteDatabase.close();
+            sqLiteDatabase.insert("User",null,contentValues);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (sqLiteDatabase != null){
+                sqLiteDatabase.close();
+            }
+
+        }
+
     }
 
     /**
@@ -43,9 +58,18 @@ public class UserDao implements UserDaoImpl{
      */
     @Override
     public void deleteUser(int userId) {
-        SQLiteDatabase sqLiteDatabase = sqLiteConnect.getWritableDatabase();
-        sqLiteDatabase.delete("User","user_id=?",new String[]{String.valueOf(userId)});
-        sqLiteDatabase.close();
+        try{
+            sqLiteDatabase = sqLiteConnect.getWritableDatabase();
+            sqLiteDatabase.delete("User","user_id=?",new String[]{String.valueOf(userId)});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(sqLiteDatabase != null){
+                sqLiteDatabase.close();
+            }
+        }
+
+
     }
 
     /**
@@ -54,12 +78,19 @@ public class UserDao implements UserDaoImpl{
      */
     @Override
     public void updateUser(User user) {
-        SQLiteDatabase sqLiteDatabase = sqLiteConnect.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("USER_NAME", user.getUserName());
-        contentValues.put("USER_PASSWORD", user.getUserPassword());
-        sqLiteDatabase.update("User", contentValues, "User_ID", new String[]{user.getUserName()});
-        sqLiteDatabase.close();
+        try{
+            sqLiteDatabase = sqLiteConnect.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("USER_NAME", user.getUserName());
+            contentValues.put("USER_PASSWORD", user.getUserPassword());
+            sqLiteDatabase.update("User", contentValues, "User_ID", new String[]{user.getUserName()});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(sqLiteDatabase != null){
+                sqLiteDatabase.close();
+            }
+        }
     }
 
     /**
@@ -69,10 +100,17 @@ public class UserDao implements UserDaoImpl{
      */
     @Override
     public void updateUser(String userName, String userPassword) {
-        SQLiteDatabase sqLiteDatabase = sqLiteConnect.getWritableDatabase();
-        String sql = "update User set user_password = ? where user_name = ?";
-        sqLiteDatabase.execSQL(sql,new String[]{userPassword,userName});
-        sqLiteDatabase.close();
+        try{
+            sqLiteDatabase = sqLiteConnect.getWritableDatabase();
+            String sql = "update User set user_password = ? where user_name = ?";
+            sqLiteDatabase.execSQL(sql,new String[]{userPassword,userName});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(sqLiteDatabase != null){
+                sqLiteDatabase.close();
+            }
+        }
     }
 
     /**
@@ -82,28 +120,34 @@ public class UserDao implements UserDaoImpl{
      */
     @Override
     public List<User> selectUser(String userName) {
-        SQLiteDatabase sqLiteDatabase = sqLiteConnect.getReadableDatabase();
+        try{
+            sqLiteDatabase = sqLiteConnect.getReadableDatabase();
 
-        List<User> arrayList = new ArrayList<>();
+            List<User> arrayList = new ArrayList<>();
 
-        User user = new User();
+            User user = new User();
 
-        String sql = "select * from user where user_name = ?";
-        Cursor cursor;
-        cursor = sqLiteDatabase.rawQuery(sql,new String[]{userName});
+            String sql = "select * from user where user_name = ?";
 
-        if(cursor.moveToFirst()){
-            user.setUserId(cursor.getInt(cursor.getColumnIndex("user_id")));
-            user.setUserName(cursor.getString(cursor.getColumnIndex("user_name")));
-            user.setUserPassword(cursor.getString(cursor.getColumnIndex("user_password")));
-            arrayList.add(user);
-            System.out.println("--------UserDao中的user值----------");
-            System.out.println(user.getUserName());
+            cursor = sqLiteDatabase.rawQuery(sql,new String[]{userName});
+
+            if(cursor.moveToFirst()){
+                user.setUserId(cursor.getInt(cursor.getColumnIndex("user_id")));
+                user.setUserName(cursor.getString(cursor.getColumnIndex("user_name")));
+                user.setUserPassword(cursor.getString(cursor.getColumnIndex("user_password")));
+                arrayList.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            cursor.close();
+            sqLiteDatabase.close();
         }
 
 
-        cursor.close();
-        sqLiteDatabase.close();
+
+
+
 
         return arrayList;
     }

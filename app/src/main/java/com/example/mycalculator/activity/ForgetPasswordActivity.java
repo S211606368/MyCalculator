@@ -16,27 +16,47 @@ import com.example.mycalculator.R;
 import com.example.mycalculator.dao.UserDao;
 import com.example.mycalculator.pojo.User;
 
+import java.util.List;
+
 /**
  * 找回密码界面
  * @author LIN
  */
 public class ForgetPasswordActivity extends AppCompatActivity {
 
+    /**
+     * reLogin 放回登录界面按钮
+     * changePassword 确认变更密码按钮
+     */
     Button reLogin;
     Button changePassword;
 
+    /**
+     * userNameText 用户账号文本框
+     * userPassword 用户密码文本框
+     * rePasswordText 确认密码文本框
+     */
     EditText userNameText;
     EditText userPasswordText;
     EditText rePasswordText;
 
+    /**
+     * passwordShow 显示用户密码按钮，暂时放在密码文本框前面的密码两个字上，后面会改
+     * rePasswordShow 显示用户确认密码按钮
+     */
     TextView passwordShow;
     TextView rePasswordShow;
 
+    /**
+     * userName 存储用户账号文本框中的字符串
+     * userPassword 存储用户密码文本框中的字符串
+     * rePassword 存储用户确认密码文本框中的字符串
+     */
     String userName;
     String userPassword;
     String rePassword;
 
-    UserDao userDao = new UserDao(ForgetPasswordActivity.this);
+    UserDao userDao;
     User user;
 
     boolean isShowPassword = false;
@@ -86,6 +106,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
+            userDao = new UserDao(ForgetPasswordActivity.this);
             if (isChange()){
                 Intent intent = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
                 startActivity(intent);
@@ -106,17 +127,24 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         userPassword = userPasswordText.getText().toString();
         rePassword = rePasswordText.getText().toString();
 
-        user = userDao.selectUser(userName).get(0);
+        List<User> arrayList;
+
+        arrayList = userDao.selectUser(userName);
 
         int passwordLength = 6;
-        if (userName.length() < passwordLength){
+        if (userPassword.length() < passwordLength){
             isChange = false;
-        } else if (userPassword.length() < passwordLength){
-            isChange = false;
-        } else if (userName.equals(user.getUserName())){
-            isChange = false;
-        } else if (!userPassword.equals(rePassword)){
-            isChange = false;
+            Toast.makeText(ForgetPasswordActivity.this,"密码应该大于六位",Toast.LENGTH_SHORT).show();
+        }else {
+            if (!userPassword.equals(rePassword)) {
+                isChange = false;
+                Toast.makeText(ForgetPasswordActivity.this,"确认密码应该和密码相同",Toast.LENGTH_SHORT).show();
+            } else {
+                if (arrayList == null || arrayList.size() == 0) {
+                    isChange = false;
+                    Toast.makeText(ForgetPasswordActivity.this,"账号不存在",Toast.LENGTH_SHORT).show();
+                }
+            }
         }
         return isChange;
     }

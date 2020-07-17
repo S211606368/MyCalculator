@@ -24,20 +24,39 @@ import java.util.List;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    /**
+     * login 确认登录按钮
+     * register 注册按钮
+     * forgetPassword 忘记密码按钮，点击可以进入忘记密码界面，可以通过输入账号和新密码更改密码
+     * log 登录日志按钮，点击进入登录日志界面
+     */
     Button login;
     Button register;
     TextView forgetPassword;
     TextView log;
 
-    TextView passwordSwitch;
-
-    String userName;
-    String userPassword;
+    /**
+     * userNameText 用户账号文本框
+     * userPassword 用户密码文本框
+     */
     EditText userNameText;
     EditText userPasswordText;
 
+    /**
+     * passwordShow 显示用户密码按钮，暂时放在密码文本框前面的密码两个字上，后面会改
+     */
+    TextView passwordSwitch;
+
+    /**
+     * userName 存储用户账号文本框中的字符串
+     * userPassword 存储用户密码文本框中的字符串
+     */
+    String userName;
+    String userPassword;
+
+
     User user;
-    UserDao userDao = new UserDao(LoginActivity.this);
+    UserDao userDao;
 
     boolean isShowPassword = false;
 
@@ -85,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
+            userDao = new UserDao(LoginActivity.this);
             if (isLogin()){
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
@@ -104,14 +124,8 @@ public class LoginActivity extends AppCompatActivity {
         boolean isLogin = true;
         userName = userNameText.getText().toString();
         userPassword = userPasswordText.getText().toString();
-        System.out.println("------------userName的值-----------");
-        System.out.println(userName);
-        System.out.println("------------userPassword的值-----------");
-        System.out.println(userPassword);
         List<User> arrayList;
         arrayList = userDao.selectUser(userName);
-        System.out.println("------------arrayList的值-----------");
-        System.out.println(arrayList);
         if (arrayList == null || arrayList.size() == 0){
             isLogin = false;
         } else {

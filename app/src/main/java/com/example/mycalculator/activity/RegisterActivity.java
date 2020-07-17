@@ -16,28 +16,47 @@ import com.example.mycalculator.R;
 import com.example.mycalculator.dao.UserDao;
 import com.example.mycalculator.pojo.User;
 
+import java.util.List;
+
 /**
  * 登录界面
  * @author LIN
  */
 public class RegisterActivity extends AppCompatActivity {
 
+    /**
+     * register确认注册按钮
+     * ownUser已拥有用户按钮点击后返回返回登录界面
+     */
     Button register;
     TextView ownUser;
 
+    /**
+     * userNameText 用户账号文本框
+     * userPassword 用户密码文本框
+     * rePasswordText 确认密码文本框
+     */
     EditText userNameText;
     EditText userPasswordText;
     EditText rePasswordText;
 
+    /**
+     * passwordShow 显示用户密码按钮，暂时放在密码文本框前面的密码两个字上，后面会改
+     * rePasswordShow 显示用户确认密码按钮
+     */
     TextView passwordShow;
     TextView rePasswordShow;
 
+    /**
+     * userName 存储用户账号文本框中的字符串
+     * userPassword 存储用户密码文本框中的字符串
+     * rePassword 存储用户确认密码文本框中的字符串
+     */
     String userName;
     String userPassword;
     String rePassword;
 
-    UserDao userDao = new UserDao(RegisterActivity.this);
-    User user;
+    UserDao userDao;
 
     boolean isShowPassword = false;
 
@@ -65,20 +84,18 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * 注册按钮
      */
     public class RegisterButtonOnclick implements View.OnClickListener{
 
         @Override
         public void onClick(View view) {
+            userDao = new UserDao(RegisterActivity.this);
             if (isRegister()){
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
-            } else{
-                Toast.makeText(RegisterActivity.this,"昵称、账号、密码不正确，或账号已存在",Toast.LENGTH_SHORT).show();
             }
-
         }
     }
 
@@ -92,19 +109,26 @@ public class RegisterActivity extends AppCompatActivity {
         userPassword = userPasswordText.getText().toString();
         rePassword = rePasswordText.getText().toString();
 
-        user = userDao.selectUser(userName).get(0);
+        List<User> arrayList;
+
+        arrayList = userDao.selectUser(userName);
 
         int passwordLength = 6;
-
-        if (userName.length() < passwordLength){
+        if (userName.length() < passwordLength || userPassword.length() < passwordLength){
             isRegister = false;
-        }else if (userPassword.length() < passwordLength){
-            isRegister = false;
-        }else if (userName.equals(user.getUserName())) {
-            isRegister = false;
-        }else if (!userPassword.equals(rePassword)){
-            isRegister = false;
+            Toast.makeText(RegisterActivity.this,"账号和密码应该大于六位",Toast.LENGTH_SHORT).show();
+        }else {
+            if (!userPassword.equals(rePassword)) {
+                isRegister = false;
+                Toast.makeText(RegisterActivity.this,"确认密码应该和密码相同",Toast.LENGTH_SHORT).show();
+            } else {
+                if (!(arrayList == null || arrayList.size() == 0)) {
+                    isRegister = false;
+                    Toast.makeText(RegisterActivity.this,"账号已存在",Toast.LENGTH_SHORT).show();
+                }
+            }
         }
+
         return isRegister;
     }
 
