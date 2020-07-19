@@ -49,7 +49,6 @@ public class UserDaoImpl implements com.example.mycalculator.dao.UserDao {
             sqLiteDatabase.endTransaction();
             sqLiteDatabase.close();
         }
-
     }
 
     /**
