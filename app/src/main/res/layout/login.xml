@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity"
-    android:background="#DD000000">
+    android:background="#DDDDDDDD">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/y20"
+        android:layout_marginStart="@dimen/x40"
         android:layout_marginTop="@dimen/y200"
-        android:layout_marginEnd="@dimen/y20"
+        android:layout_marginEnd="@dimen/x40"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,69 +21,86 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/y20">
+            android:orientation="vertical"
+            android:background="@drawable/frame_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/userText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="4"
-                android:gravity="center"
-                android:textIsSelectable="false"
-                android:inputType="none"
-                android:maxLength="2"
-                android:text="@string/user"
-                android:textSize="@dimen/x40"
-                android:textColor="#FFFFFF"/>
-
-            <EditText
-                android:id="@+id/user"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="16"
-                android:hint="@string/userInput"
-                android:inputType="textVisiblePassword"
-                android:digits="@string/inputType_digits"
-                android:background="#AAAAAAAA"
-                android:maxLength="16"
-                android:text=""
-                android:textSize="@dimen/x40"
-                android:textColor="#FFFFFF"
-                android:autofillHints="no"/>
-        </LinearLayout>
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/y20">
+                <TextView
+                    android:id="@+id/userText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="4"
+                    android:gravity="center"
+                    android:textIsSelectable="false"
+                    android:inputType="none"
+                    android:maxLength="2"
+                    android:text="@string/user"
+                    android:textSize="@dimen/x40"
+                    android:textColor="#FF000000"/>
 
-            <TextView
-                android:id="@+id/passwordText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="4"
-                android:gravity="center"
-                android:textIsSelectable="false"
-                android:inputType="none"
-                android:maxLength="2"
-                android:text="@string/password"
-                android:textSize="@dimen/x40"
-                android:textColor="#FFFFFF"/>
+                <EditText
+                    android:id="@+id/user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="16"
+                    android:hint="@string/userInput"
+                    android:inputType="textVisiblePassword"
+                    android:digits="@string/inputType_digits"
+                    android:background="@null"
+                    android:maxLength="16"
+                    android:text=""
+                    android:textSize="@dimen/x40"
+                    android:textColor="#FF000000"
+                    android:autofillHints="no"/>
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/password"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="16"
-                android:hint="@string/passwordInput"
-                android:inputType="textPassword"
-                android:digits="@string/inputType_digits"
-                android:background="#AAAAAAAA"
-                android:maxLength="16"
-                android:text=""
-                android:textColor="#FFFFFF"
-                android:textSize="@dimen/x40"
-                android:autofillHints="no"/>
+                android:layout_height="@dimen/x4"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_marginBottom="@dimen/y10"
+                android:background="@drawable/line_background">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/passwordText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="4"
+                    android:gravity="center"
+                    android:textIsSelectable="false"
+                    android:inputType="none"
+                    android:maxLength="2"
+                    android:text="@string/password"
+                    android:textSize="@dimen/x40"
+                    android:textColor="#FF000000"/>
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="16"
+                    android:hint="@string/passwordInput"
+                    android:inputType="textPassword"
+                    android:digits="@string/inputType_digits"
+                    android:background="@null"
+                    android:maxLength="16"
+                    android:text=""
+                    android:textColor="#FF000000"
+                    android:textSize="@dimen/x40"
+                    android:autofillHints="no"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -125,31 +142,30 @@
             android:layout_gravity="end">
 
             <TextView
-                android:id="@+id/forgetPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/y20"
-                android:layout_marginBottom="@dimen/y20"
-                android:ems="4"
-                android:gravity="center"
-                android:maxLength="4"
-                android:text="@string/forgetPassword"
-                android:textSize="@dimen/x40"
-                android:textColor="#FF9800"/>
-
-            <TextView
                 android:id="@+id/log"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/y20"
-                android:layout_marginEnd="@dimen/x40"
                 android:layout_marginBottom="@dimen/y20"
                 android:ems="4"
                 android:gravity="center"
                 android:maxLength="4"
                 android:text="@string/log"
                 android:textSize="@dimen/x40"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#00BCD4"/>
+
+            <TextView
+                android:id="@+id/forgetPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y20"
+                android:layout_marginBottom="@dimen/y20"
+                android:ems="5"
+                android:gravity="center"
+                android:maxLength="5"
+                android:text="@string/forgetPassword"
+                android:textSize="@dimen/x40"
+                android:textColor="#00BCD4"/>
         </LinearLayout>
     </LinearLayout>
 

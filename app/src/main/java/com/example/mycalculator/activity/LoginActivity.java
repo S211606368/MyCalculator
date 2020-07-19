@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mycalculator.R;
-import com.example.mycalculator.dao.UserDao;
+import com.example.mycalculator.dao.impl.UserDaoImpl;
 import com.example.mycalculator.pojo.User;
 
 import java.util.List;
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     User user;
-    UserDao userDao;
+    UserDaoImpl userDao;
 
     boolean isShowPassword = false;
 
@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            userDao = new UserDao(LoginActivity.this);
+            userDao = new UserDaoImpl(LoginActivity.this);
             if (isLogin()){
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);

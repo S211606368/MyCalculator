@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mycalculator.R;
-import com.example.mycalculator.dao.UserDao;
+import com.example.mycalculator.dao.impl.UserDaoImpl;
 import com.example.mycalculator.pojo.User;
 
 import java.util.List;
@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
     String userPassword;
     String rePassword;
 
-    UserDao userDao;
+    UserDaoImpl userDao;
 
     boolean isShowPassword = false;
 
@@ -90,8 +90,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            userDao = new UserDao(RegisterActivity.this);
+            userDao = new UserDaoImpl(RegisterActivity.this);
             if (isRegister()){
+                userDao.addUser(userName,userPassword);
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
