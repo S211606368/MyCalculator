@@ -16,6 +16,7 @@ import com.example.mycalculator.R;
 import com.example.mycalculator.dao.impl.UserDaoImpl;
 import com.example.mycalculator.pojo.User;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -56,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     User user;
-    UserDaoImpl userDao;
+    UserDaoImpl userDaoImpl;
 
     boolean isShowPassword = false;
 
@@ -104,13 +105,17 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            userDao = new UserDaoImpl(LoginActivity.this);
+            try {
+                userDaoImpl = new UserDaoImpl(LoginActivity.this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if (isLogin()){
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
                 Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
             }else {
-                Toast.makeText(LoginActivity.this,"账号不存在或密码错误",Toast.LENGTH_SHORT).show();
+
             }
         }
     }
@@ -124,16 +129,25 @@ public class LoginActivity extends AppCompatActivity {
         boolean isLogin = true;
         userName = userNameText.getText().toString();
         userPassword = userPasswordText.getText().toString();
-        List<User> arrayList;
-        arrayList = userDao.selectUser(userName);
-        if (arrayList == null || arrayList.size() == 0){
+
+        List<User> arrayList = null;
+        try {
+            arrayList = userDaoImpl.selectUser(userName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (arrayList == null || arrayList.isEmpty()){
             isLogin = false;
+            Toast.makeText(LoginActivity.this,"账号不存在",Toast.LENGTH_SHORT).show();
         } else {
             user = arrayList.get(0);
             if (!userPassword.equals(user.getUserPassword())){
                 isLogin = false;
+                Toast.makeText(LoginActivity.this,"密码错误",Toast.LENGTH_SHORT).show();
             }
         }
+
         return isLogin;
     }
 

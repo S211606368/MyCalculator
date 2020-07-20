@@ -16,6 +16,7 @@ import com.example.mycalculator.R;
 import com.example.mycalculator.dao.impl.UserDaoImpl;
 import com.example.mycalculator.pojo.User;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -56,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
     String userPassword;
     String rePassword;
 
-    UserDaoImpl userDao;
+    UserDaoImpl userDaoImpl;
 
     boolean isShowPassword = false;
 
@@ -90,9 +91,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            userDao = new UserDaoImpl(RegisterActivity.this);
+            try {
+                userDaoImpl = new UserDaoImpl(RegisterActivity.this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             if (isRegister()){
-                userDao.addUser(userName,userPassword);
+                userDaoImpl.addUser(userName,userPassword);
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
@@ -112,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         List<User> arrayList;
 
-        arrayList = userDao.selectUser(userName);
+        arrayList = userDaoImpl.selectUser(userName);
 
         int passwordLength = 6;
         if (userName.length() < passwordLength || userPassword.length() < passwordLength){
@@ -123,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
                 isRegister = false;
                 Toast.makeText(RegisterActivity.this,"确认密码应该和密码相同",Toast.LENGTH_SHORT).show();
             } else {
-                if (!(arrayList == null || arrayList.size() == 0)) {
+                if (!(arrayList == null || arrayList.isEmpty())) {
                     isRegister = false;
                     Toast.makeText(RegisterActivity.this,"账号已存在",Toast.LENGTH_SHORT).show();
                 }

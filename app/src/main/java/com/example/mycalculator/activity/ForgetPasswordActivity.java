@@ -16,6 +16,7 @@ import com.example.mycalculator.R;
 import com.example.mycalculator.dao.impl.UserDaoImpl;
 import com.example.mycalculator.pojo.User;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -56,7 +57,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     String userPassword;
     String rePassword;
 
-    UserDaoImpl userDao;
+    UserDaoImpl userDaoImpl;
     User user;
 
     boolean isShowPassword = false;
@@ -106,7 +107,11 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            userDao = new UserDaoImpl(ForgetPasswordActivity.this);
+            try {
+                userDaoImpl = new UserDaoImpl(ForgetPasswordActivity.this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if (isChange()){
                 Intent intent = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
                 startActivity(intent);
@@ -127,9 +132,12 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         userPassword = userPasswordText.getText().toString();
         rePassword = rePasswordText.getText().toString();
 
-        List<User> arrayList;
-
-        arrayList = userDao.selectUser(userName);
+        List<User> arrayList = null;
+        try {
+            arrayList = userDaoImpl.selectUser(userName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         int passwordLength = 6;
         if (userPassword.length() < passwordLength){
@@ -140,7 +148,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 isChange = false;
                 Toast.makeText(ForgetPasswordActivity.this,"确认密码应该和密码相同",Toast.LENGTH_SHORT).show();
             } else {
-                if (arrayList == null || arrayList.size() == 0) {
+                if (arrayList == null || arrayList.isEmpty()) {
                     isChange = false;
                     Toast.makeText(ForgetPasswordActivity.this,"账号不存在",Toast.LENGTH_SHORT).show();
                 }
