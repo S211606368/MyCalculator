@@ -2,17 +2,17 @@ package com.example.mycalculator.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mycalculator.R;
+import com.example.mycalculator.service.function.PasswordFunction;
 import com.example.mycalculator.dao.impl.UserDaoImpl;
 import com.example.mycalculator.pojo.User;
 
@@ -25,34 +25,19 @@ import java.util.List;
  */
 public class RegisterActivity extends AppCompatActivity {
 
-    /**
-     * register确认注册按钮
-     * ownUser已拥有用户按钮点击后返回返回登录界面
-     */
     Button register;
     TextView ownUser;
 
-    /**
-     * userNameText 用户账号文本框
-     * userPassword 用户密码文本框
-     * rePasswordText 确认密码文本框
-     */
     EditText userNameText;
     EditText userPasswordText;
     EditText rePasswordText;
 
-    /**
-     * passwordShow 显示用户密码按钮，暂时放在密码文本框前面的密码两个字上，后面会改
-     * rePasswordShow 显示用户确认密码按钮
-     */
-    TextView passwordShow;
-    TextView rePasswordShow;
+    ImageView showPassword;
+    ImageView showRePassword;
 
-    /**
-     * userName 存储用户账号文本框中的字符串
-     * userPassword 存储用户密码文本框中的字符串
-     * rePassword 存储用户确认密码文本框中的字符串
-     */
+    ImageView clearPassword;
+    ImageView clearRePassword;
+
     String userName;
     String userPassword;
     String rePassword;
@@ -60,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
     UserDaoImpl userDaoImpl;
 
     boolean isShowPassword = false;
+    boolean isShowRePassword = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -78,16 +64,21 @@ public class RegisterActivity extends AppCompatActivity {
 
         rePasswordText = findViewById(R.id.rePassword);
 
-        passwordShow = findViewById(R.id.passwordText);
-        passwordShow.setOnClickListener(new PasswordSwitchOnClick());
-        rePasswordShow = findViewById(R.id.rePasswordText);
-        rePasswordShow.setOnClickListener(new RePasswordSwitchOnClick());
+        showPassword = findViewById(R.id.hidePassword);
+        showPassword.setOnClickListener(new ShowPasswordOnClick());
+        showRePassword = findViewById(R.id.hideRePassword);
+        showRePassword.setOnClickListener(new ShowRePasswordOnClick());
+
+        clearPassword = findViewById(R.id.clearPassword);
+        clearPassword.setOnClickListener(new ClearPasswordOnClick());
+        clearRePassword = findViewById(R.id.clearRePassword);
+        clearRePassword.setOnClickListener(new ClearRePasswordOnClick());
     }
 
     /**
      * 注册按钮
      */
-    public class RegisterButtonOnclick implements View.OnClickListener{
+    private class RegisterButtonOnclick implements View.OnClickListener{
 
         @Override
         public void onClick(View view) {
@@ -142,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
     /**
      * 已拥有账号按钮，返回登录界面
      */
-    public class OwnUserButtonOnClick implements View.OnClickListener{
+    private class OwnUserButtonOnClick implements View.OnClickListener{
 
         @Override
         public void onClick(View view) {
@@ -153,33 +144,38 @@ public class RegisterActivity extends AppCompatActivity {
     /**
      * 点击显示密码
      */
-    public class PasswordSwitchOnClick implements View.OnClickListener {
+    private class ShowPasswordOnClick implements View.OnClickListener {
 
         @Override
         public void onClick(View view) {
-            showPassword(userPasswordText);
+            isShowPassword = PasswordFunction.showPassword(userPasswordText,isShowPassword,showPassword);
         }
     }
 
     /**
      * 点击显示确认密码
      */
-    public class RePasswordSwitchOnClick implements View.OnClickListener {
+    private class ShowRePasswordOnClick implements View.OnClickListener {
 
         @Override
         public void onClick(View view) {
-            showPassword(rePasswordText);
+            isShowRePassword = PasswordFunction.showPassword(rePasswordText,isShowRePassword,showRePassword);
         }
     }
 
-    private void showPassword(EditText userPasswordText){
-        if (isShowPassword) {
-            userPasswordText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        } else {
-            userPasswordText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+    private class ClearPasswordOnClick implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            userPasswordText.setText(PasswordFunction.clearPassword());
         }
-        isShowPassword = !isShowPassword;
-        userPassword = userPasswordText.getText().toString();
-        userPasswordText.setSelection(userPassword.length());
+    }
+
+    private class ClearRePasswordOnClick implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            rePasswordText.setText(PasswordFunction.clearPassword());
+        }
     }
 }

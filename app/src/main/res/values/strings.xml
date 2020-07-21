@@ -65,7 +65,6 @@
     <string name="ownUser"><u>已有账号</u></string>
     <string name="register">注册</string>
     <string name="log"><u>登录日志</u></string>
-    <string name="nameInput">请输入2-10位的昵称</string>
     <string name="userRegister">请输入6-16位英文、数字</string>
     <string name="userInput">请输入您的账号</string>
     <string name="passwordInput">请输入6-16位英文、数字</string>
@@ -73,6 +72,10 @@
     <string name="RePassword">请输入新的密码</string>
     <string name="reLogin">返回登录</string>
     <string name="changePassword">修改密码</string>
+    <string name="oldPassword">请输入原来的密码</string>
+    <string name="newPassword">请输入您要更改的密码</string>
+    <string name="newRePassword">请确认您要更改的密码</string>
+    <string name="discardChange">放弃修改密码</string>
     <string name="inputType_digits">1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_</string>
 
 </resources>

@@ -11,593 +11,684 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginStart="@dimen/x10"
+        android:layout_marginEnd="@dimen/x10"
+        android:layout_marginBottom="@dimen/x10"
         android:shrinkColumns="0,1,2,3,4,5,6,7,8,9"
         android:stretchColumns="0,1,2,3,4,5,6,7,8,9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TableRow android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="@dimen/x10">
 
             <Button
                 android:id="@+id/button_openParen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/openParen"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20" />
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_closeParen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/closeParen"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_memoryClear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/memoryClear"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_memoryAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/memoryAdd"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_memorySub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/memorySub"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_memoryRead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/x10"
                 android:background="@drawable/operator_background"
                 android:text="@string/memoryRead"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x10" />
 
             <Button
                 android:id="@+id/button_clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/function_background"
                 android:text="@string/clear"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_sign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/function_background"
                 android:text="@string/sign"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_del"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/function_background"
                 android:text="@string/del"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_division"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/x10"
                 android:background="@drawable/symbol_background"
                 android:text="@string/division"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x10" />
 
         </TableRow>
 
-        <TableRow android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="@dimen/x10">
 
 
             <Button
                 android:id="@+id/button_secondFunction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/secondFunction"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_xSquare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/xSquare"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_xCube"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/xCube"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_yPowerOfX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/yPowerOfX"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_xPowerOfE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/xPowerOfE"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_xPowerOfTen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/x10"
                 android:background="@drawable/operator_background"
                 android:text="@string/xPowerOfTen"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x10" />
 
             <Button
                 android:id="@+id/button_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/seven"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/eight"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/nine"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_ride"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/x10"
                 android:background="@drawable/symbol_background"
                 android:text="@string/ride"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x10" />
         </TableRow>
 
-        <TableRow android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="@dimen/x10">
 
             <Button
                 android:id="@+id/button_oneOfX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/rad"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_squareRoot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/squareRoot"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_cubeRoot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/cubeRoot"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_yRoot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/yRoot"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_ln"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/ln"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_log10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/x10"
                 android:background="@drawable/operator_background"
                 android:text="@string/log10"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x10" />
 
 
             <Button
                 android:id="@+id/button_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/four"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/five"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/six"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_sub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/x10"
                 android:background="@drawable/symbol_background"
                 android:text="@string/subtract"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x10" />
 
         </TableRow>
 
-        <TableRow android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="@dimen/x10">
 
             <Button
                 android:id="@+id/button_xFactorial"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/xFactorial"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_sin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/sin"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_cos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/cos"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_tan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/tan"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_e"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/e"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_ee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/x10"
                 android:background="@drawable/operator_background"
                 android:text="@string/ee"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x10" />
 
 
             <Button
                 android:id="@+id/button_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/one"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/two"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/three"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/x10"
                 android:background="@drawable/symbol_background"
                 android:text="@string/add"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x10" />
         </TableRow>
 
-        <TableRow android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="@dimen/x10">
 
             <Button
                 android:id="@+id/button_rad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/rad"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_sinh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/sinh"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_cosh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/cosh"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_tanh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/tanh"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_pi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/operator_background"
                 android:text="@string/pi"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_rand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/x10"
                 android:background="@drawable/operator_background"
                 android:text="@string/rand"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x10" />
 
             <Button
                 android:id="@+id/button_per"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/percent"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/zero"
                 android:textColor="#FFFFFFFF"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_point"
-                app:layout_constraintStart_toEndOf="@+id/button_per"
-                app:layout_constraintTop_toBottomOf="@+id/button_2" />
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_point"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
+                android:layout_marginEnd="@dimen/x5"
                 android:background="@drawable/number_backguound"
                 android:text="@string/point"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x5" />
 
             <Button
                 android:id="@+id/button_equal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="@dimen/x10"
                 android:background="@drawable/symbol_background"
                 android:text="@string/equal"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x20"/>
+                android:textSize="@dimen/x20"
+                android:layout_marginRight="@dimen/x10" />
         </TableRow>
     </TableLayout>
 
-    <TextView
-        android:id="@+id/text_cal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical|end"
-        android:text=""
-        android:textColor="#FFFFFFFF"
-        android:textSize="@dimen/x30"
-        app:layout_constraintBottom_toTopOf="@+id/text_total"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_total"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:gravity="center_vertical|end"
-        android:textColor="#FFFFFFFF"
-        android:textSize="@dimen/x60"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_cal" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/sign_out"
+            android:layout_width="@dimen/x100"
+            android:layout_height="@dimen/x100"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/x20"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/go_back" />
+
+        <Button
+            android:id="@+id/change_password"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/x100"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/x10"
+            android:layout_marginLeft="@dimen/x10"
+            android:background="@drawable/symbol_background"
+            android:text="@string/changePassword"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/x50"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/x10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="@dimen/x10">
+
+            <TextView
+                android:id="@+id/text_cal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x20"
+                android:gravity="center_vertical|end"
+                android:text=""
+                android:textColor="#FFFFFFFF"
+                android:textSize="@dimen/x30"
+                app:layout_constraintBottom_toTopOf="@+id/text_total"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|end"
+                android:text=""
+                android:textColor="#FFFFFFFF"
+                android:textSize="@dimen/x60"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_cal" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

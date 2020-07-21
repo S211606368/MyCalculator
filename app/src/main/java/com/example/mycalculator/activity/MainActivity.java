@@ -1,13 +1,16 @@
 package com.example.mycalculator.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mycalculator.R;
+import com.example.mycalculator.pojo.Log;
 
 /**
  * 计算器
@@ -36,10 +39,18 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewCal;
     TextView textViewTotal;
 
+    ImageView signOut;
+    Button changePassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        signOut = findViewById(R.id.sign_out);
+
+        changePassword = findViewById(R.id.change_password);
+        changePassword.setOnClickListener(new ChangePasswordOnclick());
 
         textViewCal = findViewById(R.id.text_cal);
         textViewTotal = findViewById(R.id.text_total);
@@ -359,9 +370,16 @@ public class MainActivity extends AppCompatActivity {
                 count = count.substring(0,length-1);
                 textViewTotal.setText(count);
             }
-/*            if (isPoint){
+        }
+    }
 
-            }*/
+    private class ChangePasswordOnclick implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(MainActivity.this, Log.class);
+            startActivity(intent);
+
         }
     }
 

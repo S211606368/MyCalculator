@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/x20"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginTop="@dimen/x20"
+        android:layout_marginEnd="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log"
+            android:textSize="@dimen/x100"
+            android:layout_gravity="center"
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="39dp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x40"
+            android:stretchColumns="0,1,2,3"
+            android:shrinkColumns="0,1,2,3">
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/x20"
+                    android:text="log_id"
+                    android:textSize="@dimen/x30"
+                    android:layout_marginRight="@dimen/x20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/x20"
+                    android:layout_marginRight="@dimen/x20"
+                    android:text="user_name"
+                    android:textSize="@dimen/x30" />
+                <TextView
+                    android:layout_marginEnd="@dimen/x20"
+                    android:text="user_ip"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/x30"
+                    android:layout_marginRight="@dimen/x20" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/x100"
+                    android:layout_gravity="center"
+                    android:text="login_date"
+                    android:textSize="@dimen/x30"
+                    android:layout_marginRight="@dimen/x100" />
+
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="driverSchool">
+        <item>测试驾校</item>
+        <item>福州安吉驾校</item>
+    </string-array>
+</resources>
