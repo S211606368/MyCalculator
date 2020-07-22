@@ -24,30 +24,28 @@ public class IpFunction {
      * @throws IOException
      * @throws JSONException
      */
-    public static String getNetIp() throws IOException, JSONException {
-
-        URL url = new URL("http://ip138.com");
-        HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
-        int responseCode = httpUrlConnection.getResponseCode();
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            InputStream inputStream = httpUrlConnection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder stringBuilder = new StringBuilder();
-            String str;
-            while ((str = bufferedReader.readLine()) != null) {
-                stringBuilder.append(str);
-            }
-            JSONObject obj = new JSONObject(stringBuilder.toString());
-            String data = obj.getString("data");
-            JSONObject dataObj = new JSONObject(data);
-            String ip = dataObj.getString("ip");
-            bufferedReader.close();
-            inputStream.close();
-            return ip;
-        }else{
-            System.out.println("地址获取失败");
-            return "";
+    public static String getNetIp(){
+        try{
+            URL url = new URL("http://ip138.com");
+            HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpUrlConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder stringBuilder = new StringBuilder();
+                String str;
+                while ((str = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(str);
+                }
+                JSONObject obj = new JSONObject(stringBuilder.toString());
+                String data = obj.getString("data");
+                JSONObject dataObj = new JSONObject(data);
+                String ip = dataObj.getString("ip");
+                bufferedReader.close();
+                inputStream.close();
+                return ip;
+            } catch (IOException | JSONException ex) {
+            ex.printStackTrace();
         }
+        return "";
     }
 
     public static String getLoginDate(){

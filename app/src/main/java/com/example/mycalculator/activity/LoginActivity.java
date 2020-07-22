@@ -21,8 +21,6 @@ import com.example.mycalculator.service.function.IpFunction;
 import com.example.mycalculator.service.function.PasswordFunction;
 import com.example.mycalculator.sqlite.DatabaseOpenHelper;
 
-import org.json.JSONException;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -138,11 +136,7 @@ public class LoginActivity extends AppCompatActivity {
         String ip = "";
         String loginDate = "";
 
-        try {
-            ip = IpFunction.getNetIp();
-        } catch (JSONException | IOException e) {
-            e.printStackTrace();
-        }
+        ip = IpFunction.getNetIp();
         loginDate = IpFunction.getLoginDate();
 
         logDaoImpl.addLog(userNameString,ip,loginDate);
@@ -229,8 +223,8 @@ public class LoginActivity extends AppCompatActivity {
     private void saveUser() {
         SharedPreferences .Editor editor = sharedPreferences.edit();
         editor.putInt("userId",user.getUserId());
-        editor.putString("userName",user.getUserName());
-        editor.putString("userPassword",user.getUserPassword());
+        editor.putString("userName",userNameString);
+        editor.putString("userPassword",userPasswordString);
         editor.apply();
     }
 
