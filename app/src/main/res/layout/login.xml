@@ -132,8 +132,7 @@
                     android:layout_marginEnd="@dimen/x5"
                     android:background="@drawable/clear_password"
                     android:layout_gravity="center"
-                    android:layout_marginRight="@dimen/x5"
-                    android:contentDescription="@string/log"/>
+                    android:layout_marginRight="@dimen/x5" />
 
                 <ImageView
                     android:id="@+id/hidePassword"

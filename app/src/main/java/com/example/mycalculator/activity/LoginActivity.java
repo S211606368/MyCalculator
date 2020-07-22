@@ -1,6 +1,8 @@
 package com.example.mycalculator.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,9 +14,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mycalculator.R;
+import com.example.mycalculator.dao.impl.LogDaoImpl;
 import com.example.mycalculator.dao.impl.UserDaoImpl;
 import com.example.mycalculator.pojo.User;
+import com.example.mycalculator.service.function.IpFunction;
 import com.example.mycalculator.service.function.PasswordFunction;
+import com.example.mycalculator.sqlite.DatabaseOpenHelper;
+
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,24 +32,26 @@ import java.util.List;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    Button login;
-    Button register;
-    TextView forgetPassword;
-    TextView log;
+    Button loginButton;
+    Button registerButton;
+    TextView forgetPasswordTextView;
+    TextView logTextView;
 
-    EditText userNameText;
-    EditText userPasswordText;
+    EditText userNameEditText;
+    EditText userPasswordEditText;
 
-    ImageView showPassword;
+    ImageView showPasswordImageView;
+    ImageView clearPasswordImageView;
 
-    ImageView clearPassword;
+    String userNameString;
+    String userPasswordString;
 
-    String userName;
-    String userPassword;
-
+    SharedPreferences sharedPreferences;
 
     User user;
     UserDaoImpl userDaoImpl;
+
+    LogDaoImpl logDaoImpl;
 
     boolean isShowPassword = false;
 
@@ -50,29 +59,40 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
+        DatabaseOpenHelper.getInstance(LoginActivity.this);
+
         setContentView(R.layout.login);
 
-        userNameText = findViewById(R.id.user);
-        userPasswordText = findViewById(R.id.password);
+        sharedPreferences = this.getSharedPreferences("user", Context.MODE_PRIVATE);
 
-        login = findViewById(R.id.login);
-        login.setOnClickListener(new LoginButtonOnClick());
+        userNameEditText = findViewById(R.id.user);
+        userPasswordEditText = findViewById(R.id.password);
 
-        register = findViewById(R.id.register);
-        register.setOnClickListener(new RegisterButtonOnclick());
+        loginButton = findViewById(R.id.login);
+        loginButton.setOnClickListener(new LoginButtonOnClick());
 
-        forgetPassword = findViewById(R.id.forgetPassword);
-        forgetPassword.setOnClickListener(new ForgetPasswordOnClick());
+        registerButton = findViewById(R.id.register);
+        registerButton.setOnClickListener(new RegisterButtonOnclick());
 
-        log = findViewById(R.id.log);
-        log.setOnClickListener(new LogOnClick());
+        forgetPasswordTextView = findViewById(R.id.forgetPassword);
+        forgetPasswordTextView.setOnClickListener(new ForgetPasswordOnClick());
 
-        showPassword = findViewById(R.id.hidePassword);
-        showPassword.setOnClickListener(new ShowPasswordOnClick());
+        logTextView = findViewById(R.id.log);
+        logTextView.setOnClickListener(new LogOnClick());
 
-        clearPassword = findViewById(R.id.clearPassword);
-        clearPassword.setOnClickListener(new ClearPasswordOnClick());
+        showPasswordImageView = findViewById(R.id.hidePassword);
+        showPasswordImageView.setOnClickListener(new ShowPasswordOnClick());
 
+        clearPasswordImageView = findViewById(R.id.clearPassword);
+        clearPasswordImageView.setOnClickListener(new ClearPasswordOnClick());
+
+        try {
+            userDaoImpl = new UserDaoImpl();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        autoLogin();
     }
 
     /**
@@ -94,19 +114,38 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            try {
-                userDaoImpl = new UserDaoImpl(LoginActivity.this);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
             if (isLogin()){
+                saveUser();
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
                 Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+
             }
         }
     }
 
+    /**
+     * 生成登录日志写入数据库
+     */
+    private void loginLog(){
+        try {
+            logDaoImpl = new LogDaoImpl();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String ip = "";
+        String loginDate = "";
+
+        try {
+            ip = IpFunction.getNetIp();
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
+        loginDate = IpFunction.getLoginDate();
+
+        logDaoImpl.addLog(userNameString,ip,loginDate);
+    }
 
     /**
      * 判断是否可以登录
@@ -114,12 +153,12 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean isLogin(){
         boolean isLogin = true;
-        userName = userNameText.getText().toString();
-        userPassword = userPasswordText.getText().toString();
+        userNameString = userNameEditText.getText().toString();
+        userPasswordString = userPasswordEditText.getText().toString();
 
         List<User> arrayList = null;
         try {
-            arrayList = userDaoImpl.selectUser(userName);
+            arrayList = userDaoImpl.selectUser(userNameString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -129,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this,"账号不存在",Toast.LENGTH_SHORT).show();
         } else {
             user = arrayList.get(0);
-            if (!userPassword.equals(user.getUserPassword())){
+            if (!userPasswordString.equals(user.getUserPassword())){
                 isLogin = false;
                 Toast.makeText(LoginActivity.this,"密码错误",Toast.LENGTH_SHORT).show();
             }
@@ -138,6 +177,9 @@ public class LoginActivity extends AppCompatActivity {
         return isLogin;
     }
 
+    /**
+     *忘记密码按钮
+     */
     private class ForgetPasswordOnClick implements View.OnClickListener{
 
         @Override
@@ -147,6 +189,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 日志按钮
+     */
     private class LogOnClick implements View.OnClickListener{
 
         @Override
@@ -155,19 +200,54 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 显示密码按钮
+     */
     private class ShowPasswordOnClick implements View.OnClickListener{
 
         @Override
         public void onClick(View view) {
-            PasswordFunction.showPassword(userPasswordText,isShowPassword,showPassword);
+            isShowPassword = PasswordFunction.showPassword(userPasswordEditText,isShowPassword,showPasswordImageView);
         }
     }
 
+    /**
+     * 清除密码按钮
+     */
     private class ClearPasswordOnClick implements View.OnClickListener{
 
         @Override
         public void onClick(View view) {
-            userPasswordText.setText(PasswordFunction.clearPassword());
+            userPasswordEditText.setText(PasswordFunction.clearPassword());
         }
     }
+
+    /**
+     * 记住密码
+     */
+    private void saveUser() {
+        SharedPreferences .Editor editor = sharedPreferences.edit();
+        editor.putInt("userId",user.getUserId());
+        editor.putString("userName",user.getUserName());
+        editor.putString("userPassword",user.getUserPassword());
+        editor.apply();
+    }
+
+    /**
+     * 自动登录
+     */
+    private void autoLogin(){
+        userNameString = sharedPreferences.getString("userName","");
+        userPasswordString = sharedPreferences.getString("userPassword","");
+        userNameEditText.setText(userNameString);
+        userPasswordEditText.setText(userPasswordString);
+        if (!"".equals(userNameString) && !"".equals(userPasswordString)){
+            if (isLogin()){
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
+                Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 }

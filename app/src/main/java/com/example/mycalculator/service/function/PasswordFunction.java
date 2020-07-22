@@ -27,15 +27,14 @@ public class PasswordFunction {
         String userPassword;
         if (isShowPassword) {
             userPasswordText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            showPassword.setBackgroundResource(R.drawable.show);
+            showPassword.setBackgroundResource(R.drawable.hide);
         } else {
             userPasswordText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            showPassword.setBackgroundResource(R.drawable.hide);
+            showPassword.setBackgroundResource(R.drawable.show);
         }
-        isShowPassword = !isShowPassword;
         userPassword = userPasswordText.getText().toString();
         userPasswordText.setSelection(userPassword.length());
-        return isShowPassword;
+        return !isShowPassword;
     }
 
     /**

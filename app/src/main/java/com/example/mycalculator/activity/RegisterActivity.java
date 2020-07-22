@@ -12,9 +12,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mycalculator.R;
-import com.example.mycalculator.service.function.PasswordFunction;
 import com.example.mycalculator.dao.impl.UserDaoImpl;
 import com.example.mycalculator.pojo.User;
+import com.example.mycalculator.service.function.PasswordFunction;
+import com.example.mycalculator.sqlite.DatabaseOpenHelper;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,22 +26,22 @@ import java.util.List;
  */
 public class RegisterActivity extends AppCompatActivity {
 
-    Button register;
-    TextView ownUser;
+    Button registerButton;
+    TextView ownUserTextView;
 
-    EditText userNameText;
-    EditText userPasswordText;
-    EditText rePasswordText;
+    EditText userNameEditText;
+    EditText userPasswordEitText;
+    EditText rePasswordEditText;
 
-    ImageView showPassword;
-    ImageView showRePassword;
+    ImageView showPasswordImageView;
+    ImageView showRePasswordImageView;
 
-    ImageView clearPassword;
-    ImageView clearRePassword;
+    ImageView clearPasswordImageView;
+    ImageView clearRePasswordImageView;
 
-    String userName;
-    String userPassword;
-    String rePassword;
+    String userNameString;
+    String userPasswordString;
+    String rePasswordString;
 
     UserDaoImpl userDaoImpl;
 
@@ -52,27 +53,29 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-        register = findViewById(R.id.register);
-        register.setOnClickListener(new RegisterButtonOnclick());
+        DatabaseOpenHelper.getInstance(RegisterActivity.this);
 
-        ownUser = findViewById(R.id.ownUser);
-        ownUser.setOnClickListener(new OwnUserButtonOnClick());
+        registerButton = findViewById(R.id.register);
+        registerButton.setOnClickListener(new RegisterButtonOnclick());
 
-        userNameText = findViewById(R.id.user);
+        ownUserTextView = findViewById(R.id.ownUser);
+        ownUserTextView.setOnClickListener(new OwnUserButtonOnClick());
 
-        userPasswordText = findViewById(R.id.password);
+        userNameEditText = findViewById(R.id.user);
 
-        rePasswordText = findViewById(R.id.rePassword);
+        userPasswordEitText = findViewById(R.id.password);
 
-        showPassword = findViewById(R.id.hidePassword);
-        showPassword.setOnClickListener(new ShowPasswordOnClick());
-        showRePassword = findViewById(R.id.hideRePassword);
-        showRePassword.setOnClickListener(new ShowRePasswordOnClick());
+        rePasswordEditText = findViewById(R.id.rePassword);
 
-        clearPassword = findViewById(R.id.clearPassword);
-        clearPassword.setOnClickListener(new ClearPasswordOnClick());
-        clearRePassword = findViewById(R.id.clearRePassword);
-        clearRePassword.setOnClickListener(new ClearRePasswordOnClick());
+        showPasswordImageView = findViewById(R.id.hidePassword);
+        showPasswordImageView.setOnClickListener(new ShowPasswordOnClick());
+        showRePasswordImageView = findViewById(R.id.hideRePassword);
+        showRePasswordImageView.setOnClickListener(new ShowRePasswordOnClick());
+
+        clearPasswordImageView = findViewById(R.id.clearPassword);
+        clearPasswordImageView.setOnClickListener(new ClearPasswordOnClick());
+        clearRePasswordImageView = findViewById(R.id.clearRePassword);
+        clearRePasswordImageView.setOnClickListener(new ClearRePasswordOnClick());
     }
 
     /**
@@ -83,13 +86,13 @@ public class RegisterActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             try {
-                userDaoImpl = new UserDaoImpl(RegisterActivity.this);
+                userDaoImpl = new UserDaoImpl();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             if (isRegister()){
-                userDaoImpl.addUser(userName,userPassword);
+                userDaoImpl.addUser(userNameString,userPasswordString);
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
@@ -103,20 +106,20 @@ public class RegisterActivity extends AppCompatActivity {
      */
     private boolean isRegister(){
         boolean isRegister = true;
-        userName = userNameText.getText().toString();
-        userPassword = userPasswordText.getText().toString();
-        rePassword = rePasswordText.getText().toString();
+        userNameString = userNameEditText.getText().toString();
+        userPasswordString = userPasswordEitText.getText().toString();
+        rePasswordString = rePasswordEditText.getText().toString();
 
         List<User> arrayList;
 
-        arrayList = userDaoImpl.selectUser(userName);
+        arrayList = userDaoImpl.selectUser(userNameString);
 
         int passwordLength = 6;
-        if (userName.length() < passwordLength || userPassword.length() < passwordLength){
+        if (userNameString.length() < passwordLength || userPasswordString.length() < passwordLength){
             isRegister = false;
             Toast.makeText(RegisterActivity.this,"账号和密码应该大于六位",Toast.LENGTH_SHORT).show();
         }else {
-            if (!userPassword.equals(rePassword)) {
+            if (!userPasswordString.equals(rePasswordString)) {
                 isRegister = false;
                 Toast.makeText(RegisterActivity.this,"确认密码应该和密码相同",Toast.LENGTH_SHORT).show();
             } else {
@@ -148,7 +151,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            isShowPassword = PasswordFunction.showPassword(userPasswordText,isShowPassword,showPassword);
+            isShowPassword = PasswordFunction.showPassword(userPasswordEitText,isShowPassword,showPasswordImageView);
         }
     }
 
@@ -159,7 +162,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            isShowRePassword = PasswordFunction.showPassword(rePasswordText,isShowRePassword,showRePassword);
+            isShowRePassword = PasswordFunction.showPassword(rePasswordEditText,isShowRePassword,showRePasswordImageView);
         }
     }
 
@@ -167,7 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            userPasswordText.setText(PasswordFunction.clearPassword());
+            userPasswordEitText.setText(PasswordFunction.clearPassword());
         }
     }
 
@@ -175,7 +178,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            rePasswordText.setText(PasswordFunction.clearPassword());
+            rePasswordEditText.setText(PasswordFunction.clearPassword());
         }
     }
 }

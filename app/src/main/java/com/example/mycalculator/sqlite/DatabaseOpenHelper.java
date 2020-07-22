@@ -23,20 +23,15 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String PACKAGE_NAME = "com.example.mycalculator";
     private static final int DATABASE_VERSION = 1;
 
+    public static DatabaseOpenHelper DB_HELPER_INSTANCE = null;
+
+
     private String dataBasePath;
     private final Context context;
 
-
-    private static final String TABLE_NAME = "User";
-    private static final String TABLE_ID = "USER_ID";
-    private static final String TABLE_USER_NAME = "USER_NAME";
-    private static final String TABLE_USER_PASSWORD = "USER_PASSWORD";
-
-    public String sql;
-
     /**
      * DatabaseOpenHelper的构造方法
-     * @param context
+     * @param context 场景对象（Activity）
      */
     public DatabaseOpenHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -44,13 +39,10 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         dataBasePath = "/data"
                 + Environment.getDataDirectory().getAbsolutePath() + "/"
                 + PACKAGE_NAME;
-        System.out.println("==========database路径==========");
-        System.out.println(dataBasePath);
     }
 
     /**
      * 创建数据库
-     * @throws IOException
      */
     public void createDatabase(){
         isDatabaseExist();
@@ -59,7 +51,6 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     /**
      * 复制本地数据库
-     * @throws IOException
      */
     private void copyDatabase() throws IOException{
         InputStream inputStream = context.getResources().openRawResource(R.raw.my_calculator);
@@ -80,7 +71,6 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     }
 
     private void isDatabaseExist(){
-        SQLiteDatabase sqLiteDatabase = null;
         String path = dataBasePath + "/" + DATABASE_NAME;
 
         File folder = new File(dataBasePath);
@@ -101,11 +91,22 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     /**
      * 开启数据库
      * @return 返回开启数据库方法
-     * @throws SQLException
      */
     public SQLiteDatabase openDatabase() throws SQLException{
         String path = dataBasePath +"/"+ DATABASE_NAME;
         return SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
+    }
+
+    /**
+     * 获取Database实例
+     * @param context 场景对象（Activity）
+     * @return 返回注入场景对象的Database
+     */
+    public static DatabaseOpenHelper getInstance(Context context){
+        if (DB_HELPER_INSTANCE == null){
+            DB_HELPER_INSTANCE = new DatabaseOpenHelper(context);
+        }
+        return DB_HELPER_INSTANCE;
     }
 
     @Override

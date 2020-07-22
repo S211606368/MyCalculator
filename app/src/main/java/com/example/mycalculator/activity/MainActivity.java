@@ -1,6 +1,8 @@
 package com.example.mycalculator.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +12,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mycalculator.R;
-import com.example.mycalculator.pojo.Log;
 
 /**
  * 计算器
@@ -42,15 +43,20 @@ public class MainActivity extends AppCompatActivity {
     ImageView signOut;
     Button changePassword;
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        signOut = findViewById(R.id.sign_out);
+        sharedPreferences = this.getSharedPreferences("user", Context.MODE_PRIVATE);
 
-        changePassword = findViewById(R.id.change_password);
-        changePassword.setOnClickListener(new ChangePasswordOnclick());
+        signOut = findViewById(R.id.sign_out);
+        signOut.setOnClickListener(new SignOutOnClick());
+
+        changePassword = findViewById(R.id.changePassword);
+        changePassword.setOnClickListener(new ChangePasswordOnClick());
 
         textViewCal = findViewById(R.id.text_cal);
         textViewTotal = findViewById(R.id.text_total);
@@ -373,11 +379,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private class ChangePasswordOnclick implements View.OnClickListener{
+    /**
+     * 注销登录
+     */
+    private class SignOutOnClick implements View.OnClickListener{
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, Log.class);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            SharedPreferences .Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+        }
+    }
+
+    /**
+     * 修改密码按钮
+     */
+    private class ChangePasswordOnClick implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(MainActivity.this, ChangePasswordActivity.class);
             startActivity(intent);
 
         }

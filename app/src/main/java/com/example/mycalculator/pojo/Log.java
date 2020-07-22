@@ -1,7 +1,5 @@
 package com.example.mycalculator.pojo;
 
-import java.sql.Date;
-
 /**
  * log实体对象
  * @author LIN
@@ -10,9 +8,13 @@ public class Log {
     private int logId;
     private String userName;
     private String userIp;
-    private Date loginDate;
+    private String loginDate;
 
-    public Log(String userName,String userIp,Date loginDate) {
+    public Log(){
+        super();
+    }
+
+    public Log(String userName,String userIp,String loginDate) {
         super();
         this.userName = userName;
         this.userIp = userIp;
@@ -23,15 +25,31 @@ public class Log {
         return logId;
     }
 
+    public void setLogId(int logId) {
+        this.logId = logId;
+    }
+
     public String getUserName() {
         return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserIp() {
         return userIp;
     }
 
-    public Date getLoginDate() {
+    public void setUserIp(String userIp) {
+        this.userIp = userIp;
+    }
+
+    public String getLoginDate() {
         return loginDate;
+    }
+
+    public void setLoginDate(String loginDate) {
+        this.loginDate = loginDate;
     }
 }

@@ -1,75 +1,88 @@
 package com.example.mycalculator.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mycalculator.R;
+import com.example.mycalculator.dao.impl.UserDaoImpl;
 import com.example.mycalculator.service.function.PasswordFunction;
+import com.example.mycalculator.sqlite.DatabaseOpenHelper;
+
+import java.io.IOException;
 
 /**
  * 修改密码界面
  * @author LIN
  */
 public class ChangePasswordActivity extends AppCompatActivity {
-    Button changePassword;
-    TextView discardChange;
+    Button changePasswordButton;
+    TextView discardChangeTextView;
 
-    EditText oldPasswordText;
-    EditText newPasswordText;
-    EditText rePasswordText;
+    EditText oldPasswordEditText;
+    EditText newPasswordEditText;
+    EditText rePasswordEditText;
 
-    ImageView showOldPassword;
-    ImageView showNewPassword;
-    ImageView showRePassword;
+    ImageView showOldPasswordImageView;
+    ImageView showNewPasswordImageView;
+    ImageView showRePasswordImageView;
 
-    ImageView clearOldPassword;
-    ImageView clearNewPassword;
-    ImageView clearRePassword;
+    ImageView clearOldPasswordImageView;
+    ImageView clearNewPasswordImageView;
+    ImageView clearRePasswordImageView;
 
-    String oldPassword;
-    String newPassword;
-    String rePassword;
+    String oldPasswordString;
+    String newPasswordString;
+    String rePasswordString;
 
     boolean isShowOldPassword;
     boolean isShowNewPassword;
     boolean isShowRePassword;
 
+    UserDaoImpl userDaoImpl;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_password);
 
-        changePassword = findViewById(R.id.change_password);
-        changePassword.setOnClickListener(new ChangePasswordOnclick());
+        sharedPreferences = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        DatabaseOpenHelper.getInstance(ChangePasswordActivity.this);
 
-        discardChange = findViewById(R.id.discardChange);
-        discardChange.setOnClickListener(new DiscardChangeOnClick());
+        changePasswordButton = findViewById(R.id.changePassword);
+        changePasswordButton.setOnClickListener(new ChangePasswordOnclick());
 
-        oldPasswordText = findViewById(R.id.oldPassword);
-        newPasswordText = findViewById(R.id.newPassword);
-        rePasswordText = findViewById(R.id.rePassword);
+        discardChangeTextView = findViewById(R.id.discardChange);
+        discardChangeTextView.setOnClickListener(new DiscardChangeOnClick());
 
-        showOldPassword = findViewById(R.id.hideOldPassword);
-        showOldPassword.setOnClickListener(new ShowOldPasswordOnClick());
-        showNewPassword = findViewById(R.id.hideNewPassword);
-        showNewPassword.setOnClickListener(new ShowNewPasswordOnClick());
-        showRePassword = findViewById(R.id.hideRePassword);
-        showRePassword.setOnClickListener(new ShowRePasswordOnClick());
+        oldPasswordEditText = findViewById(R.id.oldPassword);
+        newPasswordEditText = findViewById(R.id.newPassword);
+        rePasswordEditText = findViewById(R.id.rePassword);
 
-        clearOldPassword = findViewById(R.id.clearOldPassword);
-        clearOldPassword.setOnClickListener(new ClearOldPasswordOnClick());
-        clearNewPassword = findViewById(R.id.clearNewPassword);
-        clearNewPassword.setOnClickListener(new ClearNewPasswordOnClick());
-        clearRePassword = findViewById(R.id.clearRePassword);
-        clearRePassword.setOnClickListener(new ClearRePasswordOnClick());
+        showOldPasswordImageView = findViewById(R.id.hideOldPassword);
+        showOldPasswordImageView.setOnClickListener(new ShowOldPasswordOnClick());
+        showNewPasswordImageView = findViewById(R.id.hideNewPassword);
+        showNewPasswordImageView.setOnClickListener(new ShowNewPasswordOnClick());
+        showRePasswordImageView = findViewById(R.id.hideRePassword);
+        showRePasswordImageView.setOnClickListener(new ShowRePasswordOnClick());
+
+        clearOldPasswordImageView = findViewById(R.id.clearOldPassword);
+        clearOldPasswordImageView.setOnClickListener(new ClearOldPasswordOnClick());
+        clearNewPasswordImageView = findViewById(R.id.clearNewPassword);
+        clearNewPasswordImageView.setOnClickListener(new ClearNewPasswordOnClick());
+        clearRePasswordImageView = findViewById(R.id.clearRePassword);
+        clearRePasswordImageView.setOnClickListener(new ClearRePasswordOnClick());
     }
 
     /**
@@ -79,9 +92,24 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            oldPassword = oldPasswordText.getText().toString();
-            newPassword = newPasswordText.getText().toString();
-            rePassword = rePasswordText.getText().toString();
+            try {
+                userDaoImpl = new UserDaoImpl();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (isChange()){
+                String userName = sharedPreferences.getString("userName","");
+                userDaoImpl.updateUser(userName,newPasswordString);
+
+                Intent intent = new Intent(ChangePasswordActivity.this,LoginActivity.class);
+                startActivity(intent);
+                Toast.makeText(ChangePasswordActivity.this,"修改成功，原先的账号已失效请重新登录",Toast.LENGTH_SHORT).show();
+
+                SharedPreferences .Editor editor = sharedPreferences.edit();
+                editor.remove("userPassword");
+                editor.apply();
+            }
         }
     }
 
@@ -92,9 +120,37 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(ChangePasswordActivity.this, MainActivity.class);
+            Intent intent = new Intent(ChangePasswordActivity.this,MainActivity.class);
             startActivity(intent);
         }
+    }
+
+    private boolean isChange(){
+        boolean isChange = true;
+        oldPasswordString = oldPasswordEditText.getText().toString();
+        newPasswordString = newPasswordEditText.getText().toString();
+        rePasswordString = rePasswordEditText.getText().toString();
+
+        String userPassword = sharedPreferences.getString("userPassword","");
+
+        int passwordLength = 6;
+        if (newPasswordString.length() < passwordLength){
+            isChange = false;
+            Toast.makeText(ChangePasswordActivity.this,"新密码应该大于六位",Toast.LENGTH_SHORT).show();
+        }else {
+            if (!newPasswordString.equals(rePasswordString)) {
+                isChange = false;
+                Toast.makeText(ChangePasswordActivity.this,"确认密码应该和新密码相同",Toast.LENGTH_SHORT).show();
+            } else {
+                if (!oldPasswordString.equals(userPassword)) {
+                    isChange = false;
+                    Toast.makeText(ChangePasswordActivity.this,"原本的密码输入错误",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+
+        return isChange;
     }
 
     /**
@@ -104,7 +160,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            isShowRePassword = PasswordFunction.showPassword(oldPasswordText,isShowOldPassword,showOldPassword);
+            isShowRePassword = PasswordFunction.showPassword(oldPasswordEditText,isShowOldPassword,showOldPasswordImageView);
         }
     }
 
@@ -115,7 +171,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            isShowNewPassword = PasswordFunction.showPassword(newPasswordText,isShowNewPassword,showNewPassword);
+            isShowNewPassword = PasswordFunction.showPassword(newPasswordEditText,isShowNewPassword,showNewPasswordImageView);
         }
     }
 
@@ -126,7 +182,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            PasswordFunction.showPassword(rePasswordText,isShowRePassword,showRePassword);
+            PasswordFunction.showPassword(rePasswordEditText,isShowRePassword,showRePasswordImageView);
         }
     }
 
@@ -134,7 +190,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            oldPasswordText.setText(PasswordFunction.clearPassword());
+            oldPasswordEditText.setText(PasswordFunction.clearPassword());
         }
     }
 
@@ -142,7 +198,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            newPasswordText.setText(PasswordFunction.clearPassword());
+            newPasswordEditText.setText(PasswordFunction.clearPassword());
         }
     }
 
@@ -150,7 +206,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            rePasswordText.setText(PasswordFunction.clearPassword());
+            rePasswordEditText.setText(PasswordFunction.clearPassword());
         }
     }
 }

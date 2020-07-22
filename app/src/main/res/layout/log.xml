@@ -19,58 +19,36 @@
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/sign_out"
+                android:layout_width="@dimen/x100"
+                android:layout_height="@dimen/x100"
+                android:layout_marginTop="@dimen/x20"
+                android:layout_marginBottom="@dimen/x20"
+                android:background="@drawable/go_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x70"
+                android:text="@string/log"
+                android:textSize="@dimen/x100"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+
+
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/logText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/log"
-            android:textSize="@dimen/x100"
-            android:layout_gravity="center"
-            tools:layout_editor_absoluteX="176dp"
-            tools:layout_editor_absoluteY="39dp" />
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x40"
-            android:stretchColumns="0,1,2,3"
-            android:shrinkColumns="0,1,2,3">
-
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="@dimen/x20"
-                    android:text="log_id"
-                    android:textSize="@dimen/x30"
-                    android:layout_marginRight="@dimen/x20" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="@dimen/x20"
-                    android:layout_marginRight="@dimen/x20"
-                    android:text="user_name"
-                    android:textSize="@dimen/x30" />
-                <TextView
-                    android:layout_marginEnd="@dimen/x20"
-                    android:text="user_ip"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/x30"
-                    android:layout_marginRight="@dimen/x20" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/x100"
-                    android:layout_gravity="center"
-                    android:text="login_date"
-                    android:textSize="@dimen/x30"
-                    android:layout_marginRight="@dimen/x100" />
-
-            </TableRow>
-        </TableLayout>
+            android:layout_marginTop="@dimen/x30"
+            android:text="logId:1234567890                          userName:1234567890123456          userIp:172.199.099.199                 loginDate:2020/07/22"
+        android:textSize="@dimen/x40"/>
 
     </LinearLayout>
 

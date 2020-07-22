@@ -1,7 +1,6 @@
 package com.example.mycalculator.dao.impl;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -20,12 +19,10 @@ public class UserDaoImpl implements com.example.mycalculator.dao.UserDao {
 
     private SQLiteDatabase sqLiteDatabase;
 
-    List<User> arrayList;
     Cursor cursor;
 
-    public UserDaoImpl(Context context) throws IOException {
-        dataBaseOpenHelper = new DatabaseOpenHelper(context);
-        dataBaseOpenHelper.createDatabase();
+    public UserDaoImpl() throws IOException {
+        dataBaseOpenHelper = DatabaseOpenHelper.DB_HELPER_INSTANCE;
     }
 
     /**
@@ -94,7 +91,7 @@ public class UserDaoImpl implements com.example.mycalculator.dao.UserDao {
     /**
      * 忘记密码时可以重置密码
      * @param userName 用户账号
-     * @param userPassword 用户密码
+     * @param userPassword 用户更改后的密码
      */
     @Override
     public void updateUser(String userName, String userPassword) {
@@ -102,14 +99,13 @@ public class UserDaoImpl implements com.example.mycalculator.dao.UserDao {
 
         String sql = "update User set user_password = ? where user_name = ?";
         sqLiteDatabase.execSQL(sql,new String[]{userPassword,userName});
-
         closeDatabase();
 
     }
 
     /**
-     * 更具账号查找用户
-     * @param userName
+     * 根具账号查找用户
+     * @param userName 用户名称
      * @return List<User>
      */
     @Override
@@ -130,9 +126,6 @@ public class UserDaoImpl implements com.example.mycalculator.dao.UserDao {
                 user.setUserName(cursor.getString(cursor.getColumnIndex("user_name")));
                 user.setUserPassword(cursor.getString(cursor.getColumnIndex("user_password")));
                 arrayList.add(user);
-                System.out.println(cursor.getInt(cursor.getColumnIndex("user_id")));
-                System.out.println(cursor.getString(cursor.getColumnIndex("user_name")));
-                System.out.println(cursor.getString(cursor.getColumnIndex("user_password")));
             }
         } catch (Exception e) {
             e.printStackTrace();

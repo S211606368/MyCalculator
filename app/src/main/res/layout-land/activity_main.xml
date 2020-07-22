@@ -640,7 +640,7 @@
             android:background="@drawable/go_back" />
 
         <Button
-            android:id="@+id/change_password"
+            android:id="@+id/changePassword"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/x100"
             android:layout_gravity="center"
