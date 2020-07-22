@@ -100,7 +100,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
             if (isChange()){
                 String userName = sharedPreferences.getString("userName","");
-                userDaoImpl.updateUser(userName,newPasswordString);
+                userDaoImpl.updateUser(userName,PasswordFunction.encryptedPassword(newPasswordString));
 
                 Intent intent = new Intent(ChangePasswordActivity.this,LoginActivity.class);
                 startActivity(intent);

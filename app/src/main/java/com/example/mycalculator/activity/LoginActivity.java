@@ -121,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
 
+                //loginLog();
             }
         }
     }
@@ -155,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
         boolean isLogin = true;
         userNameString = userNameEditText.getText().toString();
         userPasswordString = userPasswordEditText.getText().toString();
-
+        String password = PasswordFunction.encryptedPassword(userPasswordString);
         List<User> arrayList = null;
         try {
             arrayList = userDaoImpl.selectUser(userNameString);
@@ -168,7 +169,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this,"账号不存在",Toast.LENGTH_SHORT).show();
         } else {
             user = arrayList.get(0);
-            if (!userPasswordString.equals(user.getUserPassword())){
+            if (!password.equals(user.getUserPassword())){
                 isLogin = false;
                 Toast.makeText(LoginActivity.this,"密码错误",Toast.LENGTH_SHORT).show();
             }

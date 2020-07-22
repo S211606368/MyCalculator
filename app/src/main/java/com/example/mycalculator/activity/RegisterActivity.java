@@ -92,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             if (isRegister()){
+                userPasswordString = PasswordFunction.encryptedPassword(userPasswordString);
                 userDaoImpl.addUser(userNameString,userPasswordString);
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);

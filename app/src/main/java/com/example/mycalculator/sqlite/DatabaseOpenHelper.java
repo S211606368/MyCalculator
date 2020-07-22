@@ -39,6 +39,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         dataBasePath = "/data"
                 + Environment.getDataDirectory().getAbsolutePath() + "/"
                 + PACKAGE_NAME;
+        createDatabase();
     }
 
     /**
@@ -115,7 +116,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
 
     }
 }

@@ -104,7 +104,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (isChange()){
-                userDaoImpl.updateUser(userNameString,userPasswordString);
+                userDaoImpl.updateUser(userNameString,PasswordFunction.encryptedPassword(userPasswordString));
                 Intent intent = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
                 startActivity(intent);
                 Toast.makeText(ForgetPasswordActivity.this,"修改密码成功",Toast.LENGTH_SHORT).show();
