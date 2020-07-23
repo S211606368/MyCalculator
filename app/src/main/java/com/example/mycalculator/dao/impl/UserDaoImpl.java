@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.mycalculator.dao.UserDao;
 import com.example.mycalculator.pojo.User;
 import com.example.mycalculator.sqlite.DatabaseOpenHelper;
 
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * @author LIN
  */
-public class UserDaoImpl implements com.example.mycalculator.dao.UserDao {
+public class UserDaoImpl implements UserDao {
     private DatabaseOpenHelper dataBaseOpenHelper;
 
     private SQLiteDatabase sqLiteDatabase;
@@ -127,6 +128,7 @@ public class UserDaoImpl implements com.example.mycalculator.dao.UserDao {
                 user.setUserPassword(cursor.getString(cursor.getColumnIndex("user_password")));
                 arrayList.add(user);
             }
+            cursor.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,4 +138,31 @@ public class UserDaoImpl implements com.example.mycalculator.dao.UserDao {
         return arrayList;
     }
 
+    @Override
+    public List<User> selectUser() {
+        openDatabase();
+        List<User> arrayList = new ArrayList<>();
+        User user = new User();
+
+        String sql = "select * from user";
+
+        try{
+            cursor = sqLiteDatabase.rawQuery(sql,null);
+
+            if (cursor.moveToFirst()){
+                while (cursor.moveToNext()){
+                    user.setUserId(cursor.getInt(cursor.getColumnIndex("user_id")));
+                    user.setUserName(cursor.getString(cursor.getColumnIndex("user_name")));
+                    user.setUserPassword(cursor.getString(cursor.getColumnIndex("user_password")));
+                    arrayList.add(user);
+                }
+            }
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        closeDatabase();
+        return arrayList;
+    }
 }

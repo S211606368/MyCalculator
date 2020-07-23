@@ -4,27 +4,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#DDDDDDDD"
+    tools:context=".activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/x20"
-        android:layout_marginLeft="@dimen/x20"
         android:layout_marginTop="@dimen/x20"
         android:layout_marginEnd="@dimen/x20"
-        android:layout_marginRight="@dimen/x20"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/sign_out"
+                android:id="@+id/go_back"
                 android:layout_width="@dimen/x100"
                 android:layout_height="@dimen/x100"
                 android:layout_marginTop="@dimen/x20"
@@ -34,22 +34,75 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="@dimen/x70"
-                android:text="@string/log"
-                android:textSize="@dimen/x100"
-                android:layout_gravity="center"/>
+                android:text="@string/logs"
+                android:textSize="@dimen/x100" />
         </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <TableLayout
+                android:id="@+id/log_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
 
+                <TableRow>
 
-        <TextView
-            android:id="@+id/logText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x30"
-            android:text="logId:1234567890                          userName:1234567890123456          userIp:172.199.099.199                 loginDate:2020/07/22"
-        android:textSize="@dimen/x40"/>
+                    <TextView
+                        android:id="@+id/logId"
+                        style="@style/TableFrame"
+                        android:layout_width="wrap_content"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/x30"
+                        android:gravity="center"
+                        android:text="日志编码"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/userName"
+                        style="@style/TableFrame"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/x30"
+                        android:gravity="center"
+                        android:text="用户账号"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/userIp"
+                        style="@style/TableFrame"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/x30"
+                        android:gravity="center"
+                        android:text="用户登录时的IP"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/loginDate"
+                        style="@style/TableFrame"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/x30"
+                        android:gravity="center"
+                        android:text="用户登录时间"
+                        android:textSize="@dimen/x40" />
+                </TableRow>
+
+            </TableLayout>
+
+        </ScrollView>
 
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

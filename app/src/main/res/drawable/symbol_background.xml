@@ -8,16 +8,16 @@
         android:radius="100dip" />
     <!--也可单独设置-->
     <!--<corners
-    android:topLeftRadius="10dp"
-    android:topRightRadius="10dp"
-    android:bottomRightRadius="10dp"
-    android:bottomLeftRadius="10dp"
+    android:topLeftRadius="@dimen/x20"
+    android:topRightRadius="@dimen/x20"
+    android:bottomRightRadius="@dimen/x20"
+    android:bottomLeftRadius="@dimen/x20"
     />-->
     <!--设置文字padding-->
     <!-- padding：Button里面的文字与Button边界的间隔 -->
     <padding
-        android:left="10dp"
-        android:top="10dp"
-        android:right="10dp"
-        android:bottom="10dp" />
+        android:left="@dimen/x20"
+        android:top="@dimen/x20"
+        android:right="@dimen/x20"
+        android:bottom="@dimen/x20" />
 </shape>

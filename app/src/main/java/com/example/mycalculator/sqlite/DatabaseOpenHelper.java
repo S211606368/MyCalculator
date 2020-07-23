@@ -21,7 +21,7 @@ import java.io.OutputStream;
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "my_calculator.db";
     public static final String PACKAGE_NAME = "com.example.mycalculator";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 11;
 
     public static DatabaseOpenHelper DB_HELPER_INSTANCE = null;
 
@@ -117,6 +117,13 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-
+        if (oldVersion == 1){
+            sqLiteDatabase.execSQL("drop table if exists log");
+            sqLiteDatabase.execSQL("create table Log(\n" +
+                    "log_id integer primary key autoincrement,\n" +
+                    "user_name varchar(16) not null,\n" +
+                    "user_ip varchar(16) not null,\n" +
+                    "login_date varchar(16) not null);");
+        }
     }
 }

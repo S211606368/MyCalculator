@@ -11,34 +11,40 @@ import java.util.List;
 public interface UserDao {
     /**
      * 新增用户
-     * @param userName
-     * @param userPassword
+     * @param userName 用户账号
+     * @param userPassword 用户密码
      */
     public void addUser(String userName,String userPassword);
 
     /**
      * 删除用户
-     * @param userId
+     * @param userId 用户编号
      */
     public void deleteUser(int userId);
 
     /**
      * 登录后修改用户数据
-     * @param user
+     * @param user 用户信息
      */
     public void updateUser(User user);
 
     /**
      * 忘记密码时，根据用户账号信息修改用户密码
-     * @param userName
-     * @param userPassword
+     * @param userName 用户账号
+     * @param userPassword 用户密码
      */
     public void updateUser(String userName,String userPassword);
 
     /**
-     * 查询用户信息
-     * @param userName
-     * @return ArrayList<User>
+     * 查询指定账号的用户信息
+     * @param userName 用户账号
+     * @return 指定用户
      */
     public List<User> selectUser(String userName);
+
+    /**
+     * 查询全部用户信息
+     * @return 返回数据库中的所有用户
+     */
+    public List<User> selectUser();
 }

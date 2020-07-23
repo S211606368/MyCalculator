@@ -51,6 +51,11 @@ public class PasswordFunction {
         return "";
     }
 
+    /**
+     * 加密密码
+     * @param password 用户密码
+     * @return 加密后的密码
+     */
     public static String encryptedPassword(String password){
         byte[] encryptedPassword = new byte[0];
         try {
@@ -66,5 +71,18 @@ public class PasswordFunction {
             stringBuilder.append(Integer.toHexString(b & 0xFF));
         }
         return stringBuilder.toString();
+    }
+
+    /**
+     * 判断密码是否加密
+     * @param password 数据库中的用户密码
+     * @return 加密后的密码
+     */
+    public static String isEncryptedPassword(String password){
+        int length = 16;
+        if (password.length() <= length){
+            password = PasswordFunction.encryptedPassword(password);
+        }
+        return password;
     }
 }

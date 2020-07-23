@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme);
 
         DatabaseOpenHelper.getInstance(LoginActivity.this);
 
@@ -119,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
 
-                //loginLog();
+                loginLog();
             }
         }
     }
@@ -133,10 +134,12 @@ public class LoginActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String ip = "";
-        String loginDate = "";
 
-        ip = IpFunction.getNetIp();
+        String ip = "";
+        ip += IpFunction.getNetIp();
+        ip += "(" + IpFunction.getLocalIp() + ")";
+
+        String loginDate = "";
         loginDate = IpFunction.getLoginDate();
 
         logDaoImpl.addLog(userNameString,ip,loginDate);
@@ -163,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this,"账号不存在",Toast.LENGTH_SHORT).show();
         } else {
             user = arrayList.get(0);
-            if (!password.equals(user.getUserPassword())){
+            if (!password.equals(PasswordFunction.isEncryptedPassword(user.getUserPassword()))){
                 isLogin = false;
                 Toast.makeText(LoginActivity.this,"密码错误",Toast.LENGTH_SHORT).show();
             }
@@ -191,7 +194,8 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-
+            Intent intent = new Intent(LoginActivity.this, LogActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -236,7 +240,7 @@ public class LoginActivity extends AppCompatActivity {
         userPasswordString = sharedPreferences.getString("userPassword","");
         userNameEditText.setText(userNameString);
         userPasswordEditText.setText(userPasswordString);
-        if (!"".equals(userNameString) && !"".equals(userPasswordString)){
+        if (!"".equals(userNameString) || !"".equals(userPasswordString)){
             if (isLogin()){
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
@@ -244,5 +248,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
 }

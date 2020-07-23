@@ -284,7 +284,7 @@
         android:background="@drawable/symbol_background"
         android:text="@string/changePassword"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/x50"
+        android:textSize="@dimen/x40"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

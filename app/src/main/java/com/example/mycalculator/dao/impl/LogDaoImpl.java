@@ -45,11 +45,11 @@ public class LogDaoImpl implements LogDao {
     @Override
     public void addLog(String userName, String userIp, String loginDate) {
         openDatabase();
-        System.out.println("=====添加登录日志中=====");
+
         ContentValues contentValues = new ContentValues();
         contentValues.put("user_name",userName);
         contentValues.put("user_ip",userIp);
-        contentValues.put("login_date", String.valueOf(loginDate));
+        contentValues.put("login_date", loginDate);
         sqLiteDatabase.insert("Log",null,contentValues);
 
         closeDatabase();
@@ -57,23 +57,33 @@ public class LogDaoImpl implements LogDao {
 
     @Override
     public List<Log> selectLog() {
+        openDatabase();
+
         List<Log> logList = new ArrayList<>();
-        Log log = new Log();
+
 
         String sql = "select * from log";
 
         try{
             cursor = sqLiteDatabase.rawQuery(sql,null);
+
             if(cursor.moveToFirst()){
-                log.setLogId(cursor.getInt(cursor.getColumnIndex("log_id")));
-                log.setUserName(cursor.getString(cursor.getColumnIndex("user_name")));
-                log.setUserIp(cursor.getString(cursor.getColumnIndex("user_ip")));
-                log.setLoginDate(cursor.getString(cursor.getColumnIndex("login_date")));
-                logList.add(log);
+                do {
+                    Log log = new Log();
+                    log.setLogId(cursor.getInt(cursor.getColumnIndex("log_id")));
+                    log.setUserName(cursor.getString(cursor.getColumnIndex("user_name")));
+                    log.setUserIp(cursor.getString(cursor.getColumnIndex("user_ip")));
+                    log.setLoginDate(cursor.getString(cursor.getColumnIndex("login_date")));
+                    logList.add(log);
+                }while (cursor.moveToNext());
             }
+            cursor.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        closeDatabase();
+
         return logList;
     }
 

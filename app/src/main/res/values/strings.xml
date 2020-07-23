@@ -65,6 +65,7 @@
     <string name="ownUser"><u>已有账号</u></string>
     <string name="register">注册</string>
     <string name="log"><u>登录日志</u></string>
+    <string name="logs">登录日志</string>
     <string name="userRegister">请输入6-16位英文、数字</string>
     <string name="userInput">请输入您的账号</string>
     <string name="passwordInput">请输入6-16位英文、数字</string>
