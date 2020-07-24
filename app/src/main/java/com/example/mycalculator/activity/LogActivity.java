@@ -44,7 +44,6 @@ public class LogActivity extends AppCompatActivity {
 
         getLog();
     }
-
     private void getLog(){
         List<Log> list;
         try {
@@ -97,6 +96,9 @@ public class LogActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * 返回上个界面
+     */
     private class GoBackOnClick implements View.OnClickListener {
 
         @Override

@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,13 +20,12 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * 登录界面
+ * 注册界面
  * @author LIN
  */
 public class RegisterActivity extends AppCompatActivity {
 
     Button registerButton;
-    TextView ownUserTextView;
 
     EditText userNameEditText;
     EditText userPasswordEitText;
@@ -36,6 +34,9 @@ public class RegisterActivity extends AppCompatActivity {
     ImageView showPasswordImageView;
     ImageView showRePasswordImageView;
 
+    ImageView goBackImageView;
+
+    ImageView clearUserNameImageView;
     ImageView clearPasswordImageView;
     ImageView clearRePasswordImageView;
 
@@ -58,24 +59,48 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.register);
         registerButton.setOnClickListener(new RegisterButtonOnclick());
 
-        ownUserTextView = findViewById(R.id.ownUser);
-        ownUserTextView.setOnClickListener(new OwnUserButtonOnClick());
-
         userNameEditText = findViewById(R.id.user);
 
         userPasswordEitText = findViewById(R.id.password);
 
         rePasswordEditText = findViewById(R.id.rePassword);
 
+        goBackImageView = findViewById(R.id.go_back);
+        goBackImageView.setOnClickListener(new GoBackOnClick());
+
         showPasswordImageView = findViewById(R.id.hidePassword);
         showPasswordImageView.setOnClickListener(new ShowPasswordOnClick());
         showRePasswordImageView = findViewById(R.id.hideRePassword);
         showRePasswordImageView.setOnClickListener(new ShowRePasswordOnClick());
 
+        clearUserNameImageView = findViewById(R.id.clearUserName);
+        clearUserNameImageView.setOnClickListener(new ClearUserNameOnClick());
         clearPasswordImageView = findViewById(R.id.clearPassword);
         clearPasswordImageView.setOnClickListener(new ClearPasswordOnClick());
         clearRePasswordImageView = findViewById(R.id.clearRePassword);
         clearRePasswordImageView.setOnClickListener(new ClearRePasswordOnClick());
+
+        PasswordFunction.watcherText(userNameEditText,clearUserNameImageView);
+        PasswordFunction.watcherText(userPasswordEitText,clearPasswordImageView);
+        PasswordFunction.watcherText(rePasswordEditText,clearRePasswordImageView);
+
+        try {
+            userDaoImpl = new UserDaoImpl();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 返回上个界面
+     */
+    private class GoBackOnClick implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -85,11 +110,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            try {
-                userDaoImpl = new UserDaoImpl();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
             if (isRegister()){
                 userPasswordString = PasswordFunction.encryptedPassword(userPasswordString);
@@ -167,6 +187,20 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 清除用户账号
+     */
+    private class ClearUserNameOnClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            userNameEditText.setText(PasswordFunction.clearPassword());
+        }
+    }
+
+    /**
+     * 清除用户密码
+     */
     private class ClearPasswordOnClick implements View.OnClickListener{
 
         @Override
@@ -175,6 +209,9 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 清除确认密码
+     */
     private class ClearRePasswordOnClick implements View.OnClickListener{
 
         @Override
@@ -182,4 +219,6 @@ public class RegisterActivity extends AppCompatActivity {
             rePasswordEditText.setText(PasswordFunction.clearPassword());
         }
     }
+
+
 }

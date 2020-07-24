@@ -11,204 +11,223 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/x40"
-        android:layout_marginEnd="@dimen/x40"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="@dimen/x400"
-            android:layout_height="@dimen/x400"
-            android:background="@drawable/logo"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/x50"
-            android:layout_marginBottom="@dimen/x50"
-            android:contentDescription="@string/log" />
+        <TableLayout
+            android:id="@+id/head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/x20"
+                android:background="#03A9F4">
+
+                <ImageView
+                    android:id="@+id/go_back"
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/x150"
+                    android:background="@drawable/put_back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/register"
+                    android:textSize="@dimen/x100" />
+
+                <ImageView
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/x150" />
+            </TableRow>
+        </TableLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x40"
+            android:layout_marginEnd="@dimen/x40"
             android:orientation="vertical"
-            android:background="@drawable/frame_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <ImageView
+                android:layout_width="@dimen/x400"
+                android:layout_height="@dimen/x400"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/x50"
+                android:layout_marginBottom="@dimen/x50"
+                android:background="@drawable/logo"
+                android:contentDescription="@string/log" />
+
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/frame_background"
+                android:orientation="vertical"
+                android:stretchColumns="1">
 
-                <ImageView
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/y80"
-                    android:layout_marginEnd="@dimen/x50"
-                    android:background="@drawable/role"
-                    android:layout_marginRight="@dimen/x50"
-                    android:contentDescription="@string/log" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/user"
+                    <ImageView
+                        android:layout_width="@dimen/x80"
+                        android:layout_height="@dimen/y80"
+                        android:layout_marginEnd="@dimen/x20"
+                        android:background="@drawable/role"/>
+
+                    <EditText
+                        android:id="@+id/user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:autofillHints="no"
+                        android:background="@null"
+                        android:digits="@string/inputType_digits"
+                        android:ems="10"
+                        android:hint="@string/userInput"
+                        android:inputType="textVisiblePassword"
+                        android:maxLength="16"
+                        android:text=""
+                        android:textSize="@dimen/x40" />
+
+                    <ImageView
+                        android:id="@+id/clearUserName"
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/x30"
+                        android:layout_marginEnd="@dimen/x5"
+                        android:visibility="invisible"
+                        android:background="@drawable/clear_password"
+                        android:layout_gravity="center"/>
+                </TableRow>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x4"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:background="@drawable/line_background">
+
+                </LinearLayout>
+
+                <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="16"
-                    android:hint="@string/userRegister"
-                    android:inputType="textVisiblePassword"
-                    android:digits="@string/inputType_digits"
-                    android:background="@null"
-                    android:layout_gravity="center"
-                    android:maxLength="16"
-                    android:text=""
-                    android:textSize="@dimen/x40"
-                    android:textColor="#FF000000"
-                    android:autofillHints="no"/>
-            </LinearLayout>
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x4"
-                android:layout_marginTop="@dimen/y10"
-                android:layout_marginBottom="@dimen/y10"
-                android:background="@drawable/line_background">
+                    <ImageView
+                        android:layout_width="@dimen/x80"
+                        android:layout_height="@dimen/y80"
+                        android:layout_marginEnd="@dimen/x20"
+                        android:background="@drawable/lock"/>
 
-            </LinearLayout>
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:autofillHints="no"
+                        android:background="@null"
+                        android:digits="@string/inputType_digits"
+                        android:ems="10"
+                        android:hint="@string/passwordInput"
+                        android:inputType="textPassword"
+                        android:maxLength="16"
+                        android:text=""
+                        android:textSize="@dimen/x40" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/y80"
-                    android:layout_marginEnd="@dimen/x50"
-                    android:background="@drawable/lock"
-                    android:layout_marginRight="@dimen/x50"
-                    android:contentDescription="@string/log" />
+                    <ImageView
+                        android:id="@+id/clearPassword"
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/x30"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/x5"
+                        android:visibility="invisible"
+                        android:background="@drawable/clear_password" />
 
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_width="@dimen/x450"
+                    <ImageView
+                        android:id="@+id/hidePassword"
+                        android:layout_width="@dimen/x50"
+                        android:layout_height="@dimen/x50"
+                        android:layout_marginEnd="@dimen/x10"
+                        android:layout_gravity="center"
+                        android:background="@drawable/hide" />
+                </TableRow>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x4"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:background="@drawable/line_background">
+
+                </LinearLayout>
+
+                <TableRow
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="16"
-                    android:hint="@string/passwordInput"
-                    android:inputType="textPassword"
-                    android:digits="@string/inputType_digits"
-                    android:background="@null"
-                    android:layout_gravity="center"
-                    android:maxLength="16"
-                    android:text=""
-                    android:textSize="@dimen/x40"
-                    android:autofillHints="no"/>
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/clearPassword"
-                    android:layout_width="@dimen/x30"
-                    android:layout_height="@dimen/x30"
-                    android:layout_marginEnd="@dimen/x5"
-                    android:background="@drawable/clear_password"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="@dimen/x5" />
+                    <ImageView
+                        android:layout_width="@dimen/x80"
+                        android:layout_height="@dimen/y80"
+                        android:layout_marginEnd="@dimen/x20"
+                        android:background="@drawable/lock"/>
 
-                <ImageView
-                    android:id="@+id/hidePassword"
-                    android:layout_width="@dimen/x50"
-                    android:layout_height="@dimen/x50"
-                    android:background="@drawable/hide"
-                    android:layout_gravity="center"/>
-            </LinearLayout>
+                    <EditText
+                        android:id="@+id/rePassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:autofillHints="no"
+                        android:background="@null"
+                        android:digits="@string/inputType_digits"
+                        android:ems="10"
+                        android:hint="@string/passwordInput"
+                        android:inputType="textPassword"
+                        android:maxLength="16"
+                        android:text=""
+                        android:textSize="@dimen/x40" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x4"
-                android:layout_marginTop="@dimen/y10"
-                android:layout_marginBottom="@dimen/y10"
-                android:background="@drawable/line_background">
+                    <ImageView
+                        android:id="@+id/clearRePassword"
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/x30"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/x5"
+                        android:visibility="invisible"
+                        android:background="@drawable/clear_password"/>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/x80"
-                    android:layout_height="@dimen/y80"
-                    android:layout_marginEnd="@dimen/x50"
-                    android:background="@drawable/lock"
-                    android:layout_marginRight="@dimen/x50"
-                    android:contentDescription="@string/log" />
-
-                <EditText
-                    android:id="@+id/rePassword"
-                    android:layout_width="@dimen/x450"
-                    android:layout_height="wrap_content"
-                    android:ems="16"
-                    android:hint="@string/passwordInput"
-                    android:inputType="textPassword"
-                    android:digits="@string/inputType_digits"
-                    android:background="@null"
-                    android:layout_gravity="center"
-                    android:maxLength="16"
-                    android:text=""
-                    android:textSize="@dimen/x40"
-                    android:autofillHints="no"/>
-
-                <ImageView
-                    android:id="@+id/clearRePassword"
-                    android:layout_width="@dimen/x30"
-                    android:layout_height="@dimen/x30"
-                    android:layout_marginEnd="@dimen/x5"
-                    android:background="@drawable/clear_password"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="@dimen/x5"
-                    android:contentDescription="@string/log"/>
-
-                <ImageView
-                    android:id="@+id/hideRePassword"
-                    android:layout_width="@dimen/x50"
-                    android:layout_height="@dimen/x50"
-                    android:background="@drawable/hide"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/log"/>
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/hideRePassword"
+                        android:layout_width="@dimen/x50"
+                        android:layout_height="@dimen/x50"
+                        android:layout_marginEnd="@dimen/x10"
+                        android:layout_gravity="center"
+                        android:background="@drawable/hide"/>
+                </TableRow>
+            </TableLayout>
         </LinearLayout>
 
-
-        <LinearLayout
+        <Button
+            android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/y100">
-
-            <Button
-                android:id="@+id/register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/x20"
-                android:layout_marginEnd="@dimen/x20"
-                android:background="@drawable/login_background"
-                android:text="@string/register"
-                android:textSize="@dimen/x60"
-                android:textColor="#FFFFFF"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/ownUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="@dimen/y20"
+            android:layout_marginStart="@dimen/x20"
+            android:layout_marginTop="@dimen/y50"
             android:layout_marginEnd="@dimen/x20"
-            android:layout_marginBottom="@dimen/y20"
-            android:ems="4"
-            android:gravity="center"
-            android:maxLength="4"
-            android:text="@string/ownUser"
-            android:textSize="@dimen/x40"
-            android:textColor="#00BCD4"
-            android:layout_marginRight="@dimen/x20" />
+            android:background="@drawable/login_background"
+            android:text="@string/register"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/x60" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,16 +25,18 @@ import java.util.List;
  */
 public class ForgetPasswordActivity extends AppCompatActivity {
 
-    Button reLoginButton;
     Button changePasswordButton;
 
     EditText userNameEditText;
     EditText userPasswordEditText;
     EditText rePasswordEditText;
 
+    ImageView goBack;
+
     ImageView showPasswordImageView;
     ImageView showRePasswordImageView;
 
+    ImageView clearUserNameImageView;
     ImageView clearPasswordImageView;
     ImageView clearRePasswordImageView;
 
@@ -55,8 +57,8 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
         DatabaseOpenHelper.getInstance(ForgetPasswordActivity.this);
 
-        reLoginButton = findViewById(R.id.reLogin);
-        reLoginButton.setOnClickListener(new ReLoginButtonOnClick());
+        goBack = findViewById(R.id.go_back);
+        goBack.setOnClickListener(new ReLoginButtonOnClick());
 
         changePasswordButton = findViewById(R.id.changePassword);
         changePasswordButton.setOnClickListener(new ChangePasswordButtonOnClick());
@@ -73,10 +75,22 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         showRePasswordImageView = findViewById(R.id.hideRePassword);
         showRePasswordImageView.setOnClickListener(new ShowRePasswordOnClick());
 
+        clearUserNameImageView = findViewById(R.id.clearUserName);
+        clearUserNameImageView.setOnClickListener(new ClearUserNameOnClick());
         clearPasswordImageView = findViewById(R.id.clearPassword);
         clearPasswordImageView.setOnClickListener(new ClearPasswordOnClick());
         clearRePasswordImageView = findViewById(R.id.clearRePassword);
         clearRePasswordImageView.setOnClickListener(new ClearRePasswordOnClick());
+
+        PasswordFunction.watcherText(userNameEditText,clearUserNameImageView);
+        PasswordFunction.watcherText(userPasswordEditText,clearPasswordImageView);
+        PasswordFunction.watcherText(rePasswordEditText,clearRePasswordImageView);
+
+        try {
+            userDaoImpl = new UserDaoImpl();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -98,11 +112,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            try {
-                userDaoImpl = new UserDaoImpl();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
             if (isChange()){
                 userDaoImpl.updateUser(userNameString,PasswordFunction.encryptedPassword(userPasswordString));
                 Intent intent = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
@@ -184,6 +194,13 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             rePasswordEditText.setText(PasswordFunction.clearPassword());
+        }
+    }
+
+    private class ClearUserNameOnClick implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            userNameEditText.setText(PasswordFunction.clearPassword());
         }
     }
 }

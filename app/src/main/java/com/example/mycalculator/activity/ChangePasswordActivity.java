@@ -36,6 +36,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
     ImageView showNewPasswordImageView;
     ImageView showRePasswordImageView;
 
+    ImageView goBackImageView;
+
     ImageView clearOldPasswordImageView;
     ImageView clearNewPasswordImageView;
     ImageView clearRePasswordImageView;
@@ -63,12 +65,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
         changePasswordButton = findViewById(R.id.changePassword);
         changePasswordButton.setOnClickListener(new ChangePasswordOnclick());
 
-        discardChangeTextView = findViewById(R.id.discardChange);
-        discardChangeTextView.setOnClickListener(new DiscardChangeOnClick());
-
         oldPasswordEditText = findViewById(R.id.oldPassword);
         newPasswordEditText = findViewById(R.id.newPassword);
         rePasswordEditText = findViewById(R.id.rePassword);
+
+        goBackImageView = findViewById(R.id.go_back);
+        goBackImageView.setOnClickListener(new GoBackOnClick());
 
         showOldPasswordImageView = findViewById(R.id.hideOldPassword);
         showOldPasswordImageView.setOnClickListener(new ShowOldPasswordOnClick());
@@ -83,6 +85,28 @@ public class ChangePasswordActivity extends AppCompatActivity {
         clearNewPasswordImageView.setOnClickListener(new ClearNewPasswordOnClick());
         clearRePasswordImageView = findViewById(R.id.clearRePassword);
         clearRePasswordImageView.setOnClickListener(new ClearRePasswordOnClick());
+
+        PasswordFunction.watcherText(oldPasswordEditText,clearOldPasswordImageView);
+        PasswordFunction.watcherText(newPasswordEditText,clearNewPasswordImageView);
+        PasswordFunction.watcherText(rePasswordEditText,clearRePasswordImageView);
+
+        try {
+            userDaoImpl = new UserDaoImpl();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 返回上个界面
+     */
+    private class GoBackOnClick implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(ChangePasswordActivity.this,MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -92,12 +116,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            try {
-                userDaoImpl = new UserDaoImpl();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
             if (isChange()){
                 String userName = sharedPreferences.getString("userName","");
                 userDaoImpl.updateUser(userName,PasswordFunction.encryptedPassword(newPasswordString));
@@ -110,18 +128,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 editor.remove("userPassword");
                 editor.apply();
             }
-        }
-    }
-
-    /**
-     * 放弃修改密码按钮
-     */
-    private class DiscardChangeOnClick implements View.OnClickListener{
-
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(ChangePasswordActivity.this,MainActivity.class);
-            startActivity(intent);
         }
     }
 

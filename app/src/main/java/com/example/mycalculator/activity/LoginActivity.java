@@ -38,7 +38,11 @@ public class LoginActivity extends AppCompatActivity {
     EditText userNameEditText;
     EditText userPasswordEditText;
 
+
+
     ImageView showPasswordImageView;
+
+    ImageView clearUserNameImageView;
     ImageView clearPasswordImageView;
 
     String userNameString;
@@ -82,8 +86,13 @@ public class LoginActivity extends AppCompatActivity {
         showPasswordImageView = findViewById(R.id.hidePassword);
         showPasswordImageView.setOnClickListener(new ShowPasswordOnClick());
 
+        clearUserNameImageView = findViewById(R.id.clearUserName);
+        clearUserNameImageView.setOnClickListener(new ClearUserNameOnClick());
         clearPasswordImageView = findViewById(R.id.clearPassword);
         clearPasswordImageView.setOnClickListener(new ClearPasswordOnClick());
+
+        PasswordFunction.watcherText(userNameEditText,clearUserNameImageView);
+        PasswordFunction.watcherText(userPasswordEditText,clearPasswordImageView);
 
         try {
             userDaoImpl = new UserDaoImpl();
@@ -218,6 +227,17 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             userPasswordEditText.setText(PasswordFunction.clearPassword());
+        }
+    }
+
+    /**
+     * 清除账号按钮
+     */
+    private class ClearUserNameOnClick implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            userNameEditText.setText(PasswordFunction.clearPassword());
         }
     }
 

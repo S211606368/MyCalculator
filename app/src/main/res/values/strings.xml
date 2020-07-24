@@ -69,7 +69,7 @@
     <string name="userRegister">请输入6-16位英文、数字</string>
     <string name="userInput">请输入您的账号</string>
     <string name="passwordInput">请输入6-16位英文、数字</string>
-    <string name="forgetPassword"><u>忘记密码?</u></string>
+    <string name="forgetPassword"><u>忘记密码</u></string>
     <string name="RePassword">请输入新的密码</string>
     <string name="reLogin">返回登录</string>
     <string name="changePassword">修改密码</string>

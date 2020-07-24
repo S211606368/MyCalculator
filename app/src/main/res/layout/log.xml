@@ -19,26 +19,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
 
-            <ImageView
-                android:id="@+id/go_back"
-                android:layout_width="@dimen/x100"
-                android:layout_height="@dimen/x100"
-                android:layout_marginTop="@dimen/x20"
-                android:layout_marginBottom="@dimen/x20"
-                android:background="@drawable/go_back" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/x70"
-                android:text="@string/logs"
-                android:textSize="@dimen/x100" />
-        </LinearLayout>
+                android:background="#03A9F4"
+                android:layout_marginBottom="@dimen/x20">
+
+                <ImageView
+                    android:id="@+id/go_back"
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/x150"
+                    android:background="@drawable/put_back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/logs"
+                    android:textSize="@dimen/x100" />
+
+                <ImageView
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/x150"/>
+            </TableRow>
+        </TableLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
