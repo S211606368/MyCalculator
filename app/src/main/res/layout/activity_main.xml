@@ -11,7 +11,7 @@
     android:launchMode="singleTask"
     android:windowSoftInputMode="stateHidden|adjustResize">
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/x20"
@@ -19,9 +19,11 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:shrinkColumns="*"
+        android:stretchColumns="*">
 
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/y20">
@@ -34,8 +36,7 @@
                 android:background="@drawable/function_background"
                 android:text="@string/clear"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
             <Button
                 android:id="@+id/button_sign"
@@ -45,8 +46,7 @@
                 android:background="@drawable/function_background"
                 android:text="@string/sign"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75" />
 
             <Button
                 android:id="@+id/button_del"
@@ -56,8 +56,7 @@
                 android:background="@drawable/function_background"
                 android:text="@string/del"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
             <Button
                 android:id="@+id/button_division"
@@ -67,9 +66,14 @@
                 android:text="@string/division"
                 android:textColor="#FFFFFFFF"
                 android:textSize="@dimen/x75"/>
-        </LinearLayout>
 
-        <LinearLayout
+            <TextView
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/x20"/>
+
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/y20">
@@ -82,8 +86,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/seven"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
             <Button
                 android:id="@+id/button_8"
@@ -93,8 +96,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/eight"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
             <Button
                 android:id="@+id/button_9"
@@ -104,8 +106,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/nine"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
             <Button
                 android:id="@+id/button_ride"
@@ -115,9 +116,14 @@
                 android:text="@string/ride"
                 android:textColor="#FFFFFFFF"
                 android:textSize="@dimen/x75"/>
-        </LinearLayout>
 
-        <LinearLayout
+
+            <TextView
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/x20"/>
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/y20">
@@ -130,8 +136,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/four"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
             <Button
                 android:id="@+id/button_5"
@@ -141,8 +146,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/five"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
             <Button
                 android:id="@+id/button_6"
@@ -152,8 +156,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/six"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
 
             <Button
@@ -164,9 +167,13 @@
                 android:text="@string/subtract"
                 android:textColor="#FFFFFFFF"
                 android:textSize="@dimen/x75"/>
-        </LinearLayout>
 
-        <LinearLayout
+            <TextView
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/x20"/>
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/y20">
@@ -179,8 +186,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/one"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75" />
 
             <Button
                 android:id="@+id/button_2"
@@ -190,8 +196,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/two"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
             <Button
                 android:id="@+id/button_3"
@@ -201,8 +206,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/three"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
 
             <Button
@@ -213,9 +217,13 @@
                 android:text="@string/add"
                 android:textColor="#FFFFFFFF"
                 android:textSize="@dimen/x75"/>
-        </LinearLayout>
 
-        <LinearLayout
+            <TextView
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/x20"/>
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/y20">
@@ -228,8 +236,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/percent"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
             <Button
                 android:id="@+id/button_0"
@@ -239,8 +246,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/zero"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
             <Button
                 android:id="@+id/button_point"
@@ -250,8 +256,7 @@
                 android:background="@drawable/number_backguound"
                 android:text="@string/point"
                 android:textColor="#FFFFFFFF"
-                android:textSize="@dimen/x75"
-                android:layout_marginRight="@dimen/y20" />
+                android:textSize="@dimen/x75"/>
 
             <Button
                 android:id="@+id/button_equal"
@@ -261,15 +266,18 @@
                 android:text="@string/equal"
                 android:textColor="#FFFFFFFF"
                 android:textSize="@dimen/x75"/>
-        </LinearLayout>
-    </LinearLayout>
+
+            <TextView
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/x20"/>
+        </TableRow>
+    </TableLayout>
 
     <ImageView
         android:id="@+id/sign_out"
         android:layout_width="@dimen/x100"
         android:layout_height="@dimen/x100"
         android:layout_marginStart="@dimen/x20"
-        android:layout_marginLeft="@dimen/x20"
         android:layout_marginTop="@dimen/x20"
         android:background="@drawable/go_back"
         app:layout_constraintStart_toStartOf="parent"
@@ -281,7 +289,6 @@
         android:layout_height="@dimen/x100"
         android:layout_marginTop="@dimen/x20"
         android:layout_marginEnd="@dimen/x20"
-        android:layout_marginRight="@dimen/x20"
         android:background="@drawable/symbol_background"
         android:text="@string/changePassword"
         android:textColor="#FFFFFF"
@@ -297,7 +304,7 @@
         android:gravity="center_vertical|end"
         android:text=""
         android:textColor="#FFFFFFFF"
-        android:textSize="@dimen/cal_sp"
+        android:textSize="@dimen/x50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -308,7 +315,7 @@
         android:gravity="center_vertical|end"
         android:text=""
         android:textColor="#FFFFFFFF"
-        android:textSize="@dimen/total_sp"
+        android:textSize="@dimen/x90"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_cal" />
 
