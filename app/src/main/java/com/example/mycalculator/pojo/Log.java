@@ -5,9 +5,11 @@ import com.bin.david.form.annotation.SmartTable;
 
 /**
  * log实体对象
- * @author LIN
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
-@SmartTable(name = "登录日志")
+@SmartTable
 public class Log {
     @SmartColumn(id = 0,name = "日志编码")
     private int logId;

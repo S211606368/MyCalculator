@@ -16,7 +16,9 @@ import java.io.OutputStream;
 
 /**
  * SQLiteOpenHelper的帮助类
- * @author LIN
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "my_calculator.db";
@@ -31,6 +33,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     /**
      * DatabaseOpenHelper的构造方法
+     *
      * @param context 场景对象（Activity）
      */
     public DatabaseOpenHelper(Context context) {
@@ -91,6 +94,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     /**
      * 开启数据库
+     *
      * @return 返回开启数据库方法
      */
     public SQLiteDatabase openDatabase() throws SQLException{

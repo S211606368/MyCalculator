@@ -26,7 +26,9 @@ import java.util.List;
 
 /**
  * 登录界面
- * @author LIN
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public class LoginActivity extends AppCompatActivity {
 
@@ -128,8 +130,6 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
                 Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-
-                loginLog();
             }
         }
     }
@@ -138,11 +138,7 @@ public class LoginActivity extends AppCompatActivity {
      * 生成登录日志写入数据库
      */
     private void loginLog(){
-        try {
-            logDaoImpl = new LogDaoImpl();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        logDaoImpl = new LogDaoImpl();
 
         String ip = "";
         ip += IpFunction.getNetIp();
@@ -156,6 +152,7 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * 判断是否可以登录
+     *
      * @return boolean
      */
     private boolean isLogin(){
@@ -178,6 +175,8 @@ public class LoginActivity extends AppCompatActivity {
             if (!password.equals(PasswordFunction.isEncryptedPassword(user.getUserPassword()))){
                 isLogin = false;
                 Toast.makeText(LoginActivity.this,"密码错误",Toast.LENGTH_SHORT).show();
+            }else{
+                loginLog();
             }
         }
 
@@ -260,6 +259,7 @@ public class LoginActivity extends AppCompatActivity {
         userPasswordString = sharedPreferences.getString("userPassword","");
         userNameEditText.setText(userNameString);
         userPasswordEditText.setText(userPasswordString);
+
         if (!"".equals(userNameString) || !"".equals(userPasswordString)){
             if (isLogin()){
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);

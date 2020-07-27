@@ -13,7 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author LIN
+ * 用户实现类
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public class UserDaoImpl implements UserDao {
     private DatabaseOpenHelper dataBaseOpenHelper;

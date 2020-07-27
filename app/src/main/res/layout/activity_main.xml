@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:background="#DD000000"
     tools:context=".activity.MainActivity"
-    android:configChanges="orientation|keyboardHidden">
+    android:configChanges="orientation|screenSize|keyboardHidden"
+    android:launchMode="singleTask"
+    android:windowSoftInputMode="stateHidden|adjustResize">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,8 +19,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="@dimen/x20">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +29,7 @@
             <Button
                 android:id="@+id/button_clear"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/function_background"
                 android:text="@string/clear"
@@ -39,7 +40,7 @@
             <Button
                 android:id="@+id/button_sign"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/function_background"
                 android:text="@string/sign"
@@ -50,7 +51,7 @@
             <Button
                 android:id="@+id/button_del"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/function_background"
                 android:text="@string/del"
@@ -61,7 +62,7 @@
             <Button
                 android:id="@+id/button_division"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:background="@drawable/symbol_background"
                 android:text="@string/division"
                 android:textColor="#FFFFFFFF"
@@ -76,7 +77,7 @@
             <Button
                 android:id="@+id/button_7"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/seven"
@@ -87,7 +88,7 @@
             <Button
                 android:id="@+id/button_8"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/eight"
@@ -98,7 +99,7 @@
             <Button
                 android:id="@+id/button_9"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/nine"
@@ -109,7 +110,7 @@
             <Button
                 android:id="@+id/button_ride"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:background="@drawable/symbol_background"
                 android:text="@string/ride"
                 android:textColor="#FFFFFFFF"
@@ -124,7 +125,7 @@
             <Button
                 android:id="@+id/button_4"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/four"
@@ -135,7 +136,7 @@
             <Button
                 android:id="@+id/button_5"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/five"
@@ -146,7 +147,7 @@
             <Button
                 android:id="@+id/button_6"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/six"
@@ -158,7 +159,7 @@
             <Button
                 android:id="@+id/button_sub"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:background="@drawable/symbol_background"
                 android:text="@string/subtract"
                 android:textColor="#FFFFFFFF"
@@ -173,7 +174,7 @@
             <Button
                 android:id="@+id/button_1"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/one"
@@ -184,7 +185,7 @@
             <Button
                 android:id="@+id/button_2"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/two"
@@ -195,7 +196,7 @@
             <Button
                 android:id="@+id/button_3"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/three"
@@ -207,7 +208,7 @@
             <Button
                 android:id="@+id/button_add"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:background="@drawable/symbol_background"
                 android:text="@string/add"
                 android:textColor="#FFFFFFFF"
@@ -222,7 +223,7 @@
             <Button
                 android:id="@+id/button_per"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/percent"
@@ -233,7 +234,7 @@
             <Button
                 android:id="@+id/button_0"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/zero"
@@ -244,7 +245,7 @@
             <Button
                 android:id="@+id/button_point"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:layout_marginEnd="@dimen/y20"
                 android:background="@drawable/number_backguound"
                 android:text="@string/point"
@@ -255,7 +256,7 @@
             <Button
                 android:id="@+id/button_equal"
                 android:layout_width="@dimen/x175"
-                android:layout_height="@dimen/y150"
+                android:layout_height="@dimen/x175"
                 android:background="@drawable/symbol_background"
                 android:text="@string/equal"
                 android:textColor="#FFFFFFFF"

@@ -2,7 +2,9 @@ package com.example.mycalculator.pojo;
 
 /**
  * 用户类
- * @author LIN
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public class User {
 

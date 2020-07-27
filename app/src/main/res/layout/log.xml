@@ -27,8 +27,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#03A9F4"
-                android:layout_marginBottom="@dimen/x20">
+                android:background="#03A9F4">
 
                 <ImageView
                     android:id="@+id/go_back"
@@ -49,74 +48,10 @@
             </TableRow>
         </TableLayout>
 
-        <ScrollView
+        <com.bin.david.form.core.SmartTable
+            android:id="@+id/smart_table"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TableLayout
-                android:id="@+id/log_information"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
-
-                <TableRow>
-
-                    <TextView
-                        android:id="@+id/logId"
-                        style="@style/TableFrame"
-                        android:layout_width="wrap_content"
-                        android:layout_height="55dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/x30"
-                        android:gravity="center"
-                        android:text="日志编码"
-                        android:textSize="@dimen/x40" />
-
-                    <TextView
-                        android:id="@+id/userName"
-                        style="@style/TableFrame"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/x30"
-                        android:gravity="center"
-                        android:text="用户账号"
-                        android:textSize="@dimen/x40" />
-
-                    <TextView
-                        android:id="@+id/userIp"
-                        style="@style/TableFrame"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/x30"
-                        android:gravity="center"
-                        android:text="用户登录时的IP"
-                        android:textSize="@dimen/x40" />
-
-                    <TextView
-                        android:id="@+id/loginDate"
-                        style="@style/TableFrame"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/x30"
-                        android:gravity="center"
-                        android:text="用户登录时间"
-                        android:textSize="@dimen/x40" />
-                </TableRow>
-
-                <com.bin.david.form.core.SmartTable
-                    android:id="@+id/table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-
-            </TableLayout>
-
-        </ScrollView>
-
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 

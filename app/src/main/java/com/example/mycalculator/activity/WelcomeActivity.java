@@ -5,24 +5,22 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 /**
- * @author LIN
+ * 启动界面
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Timer time = new Timer();
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-                finish();
-            }
-        };time.schedule(timerTask,2000);
+        try {
+            Thread.sleep(1000);
+            startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

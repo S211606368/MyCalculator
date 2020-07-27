@@ -22,7 +22,9 @@ import java.io.IOException;
 
 /**
  * 修改密码界面
- * @author LIN
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public class ChangePasswordActivity extends AppCompatActivity {
     Button changePasswordButton;
@@ -46,9 +48,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
     String newPasswordString;
     String rePasswordString;
 
-    boolean isShowOldPassword;
-    boolean isShowNewPassword;
-    boolean isShowRePassword;
+    boolean isShowOldPassword = false;
+    boolean isShowNewPassword = false;
+    boolean isShowRePassword = false;
 
     UserDaoImpl userDaoImpl;
 
@@ -166,7 +168,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            isShowRePassword = PasswordFunction.showPassword(oldPasswordEditText,isShowOldPassword,showOldPasswordImageView);
+            isShowOldPassword = PasswordFunction.showPassword(oldPasswordEditText,isShowOldPassword,showOldPasswordImageView);
         }
     }
 
@@ -188,7 +190,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            PasswordFunction.showPassword(rePasswordEditText,isShowRePassword,showRePasswordImageView);
+            isShowRePassword = PasswordFunction.showPassword(rePasswordEditText,isShowRePassword,showRePasswordImageView);
         }
     }
 

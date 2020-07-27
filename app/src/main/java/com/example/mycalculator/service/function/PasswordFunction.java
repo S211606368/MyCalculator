@@ -19,12 +19,15 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * 部分密码功能
- * @author LIN
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public class PasswordFunction {
 
     /**
      * 显示密码
+     *
      * @param userPasswordText 密码文本框
      * @param isShowPassword 判断是否显示密码
      * @param showPassword 显示密码图标
@@ -32,20 +35,25 @@ public class PasswordFunction {
      */
     public static boolean showPassword(EditText userPasswordText, boolean isShowPassword, ImageView showPassword){
         String userPassword;
+
         if (isShowPassword) {
             userPasswordText.setTransformationMethod(PasswordTransformationMethod.getInstance());
             showPassword.setBackgroundResource(R.drawable.hide);
+            isShowPassword = false;
         } else {
             userPasswordText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             showPassword.setBackgroundResource(R.drawable.show);
+            isShowPassword = true;
         }
         userPassword = userPasswordText.getText().toString();
         userPasswordText.setSelection(userPassword.length());
-        return !isShowPassword;
+
+        return isShowPassword;
     }
 
     /**
      * 清除密码
+     *
      * @return ""
      */
     @NotNull
@@ -56,6 +64,7 @@ public class PasswordFunction {
 
     /**
      * 加密密码
+     *
      * @param password 用户密码
      * @return 加密后的密码
      */
@@ -89,6 +98,12 @@ public class PasswordFunction {
         return password;
     }
 
+    /**
+     * 文本监听
+     *
+     * @param editText
+     * @param imageView
+     */
     public static void watcherText(final EditText editText, final ImageView imageView){
         TextWatcher textWatcher = new TextWatcher() {
             @Override

@@ -6,11 +6,14 @@ import java.util.List;
 
 /**
  * User对象持久化类的接口
- * @author LIN
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public interface UserDao {
     /**
      * 新增用户
+     *
      * @param userName 用户账号
      * @param userPassword 用户密码
      */
@@ -18,18 +21,21 @@ public interface UserDao {
 
     /**
      * 删除用户
+     *
      * @param userId 用户编号
      */
     public void deleteUser(int userId);
 
     /**
      * 登录后修改用户数据
+     *
      * @param user 用户信息
      */
     public void updateUser(User user);
 
     /**
      * 忘记密码时，根据用户账号信息修改用户密码
+     *
      * @param userName 用户账号
      * @param userPassword 用户密码
      */
@@ -37,6 +43,7 @@ public interface UserDao {
 
     /**
      * 查询指定账号的用户信息
+     *
      * @param userName 用户账号
      * @return 指定用户
      */
@@ -44,6 +51,7 @@ public interface UserDao {
 
     /**
      * 查询全部用户信息
+     *
      * @return 返回数据库中的所有用户
      */
     public List<User> selectUser();

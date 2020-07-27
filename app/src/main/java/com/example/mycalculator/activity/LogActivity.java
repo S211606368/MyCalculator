@@ -2,32 +2,35 @@ package com.example.mycalculator.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bin.david.form.core.SmartTable;
+import com.bin.david.form.data.column.Column;
 import com.example.mycalculator.R;
 import com.example.mycalculator.dao.impl.LogDaoImpl;
 import com.example.mycalculator.pojo.Log;
+import com.example.mycalculator.service.function.TableFunction;
 import com.example.mycalculator.sqlite.DatabaseOpenHelper;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
  * 登录日志界面
- * @author LIN
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public class LogActivity extends AppCompatActivity {
-    TableLayout logInformationTableLayout;
     ImageView goBackImageView;
 
     LogDaoImpl logDaoImpl;
+
+    //SmartTable logInformationSmartTable;
+
+    SmartTable<Log> logInformationSmartTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,63 +40,36 @@ public class LogActivity extends AppCompatActivity {
 
         setContentView(R.layout.log);
 
-        logInformationTableLayout = findViewById(R.id.log_information);
-
         goBackImageView = findViewById(R.id.go_back);
         goBackImageView.setOnClickListener(new GoBackOnClick());
 
         getLog();
+        TableFunction<Log> tableFunction = new TableFunction<>();
+        tableFunction.tableColor(logInformationSmartTable,0xAAAAAAAA);
     }
+
+    /**
+     * 表格显示
+     */
     private void getLog(){
+        final Column<Integer> logIdColumn = new Column<>("日志编码","logId");
+        final Column<String> userNameColumn = new Column<>("用户账号","userName");
+
         List<Log> list;
-        try {
-            logDaoImpl = new LogDaoImpl();
+        logDaoImpl = new LogDaoImpl();
 
-            list = logDaoImpl.selectLog();
+        list = logDaoImpl.selectLog();
 
-            for (Log log:list) {
-                TableRow tableRow = new TableRow(getBaseContext());
-                int count = 4;
+        logInformationSmartTable = findViewById(R.id.smart_table);
 
-                TextView logIdTextView = new TextView(getBaseContext());
-                logIdTextView.setBackgroundResource(R.drawable.table_frame);
-                logIdTextView.setPadding(1, 1, 1, 1);
-                logIdTextView.setText(""+log.getLogId());
-                logIdTextView.setGravity(Gravity.CENTER);
-                tableRow.addView(logIdTextView,0);
-                System.out.println(""+log.getLogId());
+        float maxZoom = 2;
+        float minZoom = (float) 0.5;
+        logInformationSmartTable.setZoom(true,maxZoom, minZoom);
 
-                TextView userNameTextView = new TextView(getBaseContext());
-                userNameTextView.setBackgroundResource(R.drawable.table_frame);
-                userNameTextView.setPadding(1, 1, 1, 1);
-                userNameTextView.setText(log.getUserName());
-                userNameTextView.setGravity(Gravity.CENTER);
-                tableRow.addView(userNameTextView,1);
-                System.out.println(log.getUserName());
+        logIdColumn.setFixed(true);
+        userNameColumn.setFixed(true);
 
-                TextView userIpTextView = new TextView(getBaseContext());
-                userIpTextView.setBackgroundResource(R.drawable.table_frame);
-                userIpTextView.setPadding(1, 1, 1, 1);
-                userIpTextView.setText(log.getUserIp());
-                userIpTextView.setGravity(Gravity.CENTER);
-                tableRow.addView(userIpTextView,2);
-                System.out.println(log.getUserIp());
-
-                TextView loginDateTextView = new TextView(getBaseContext());
-                loginDateTextView.setBackgroundResource(R.drawable.table_frame);
-                loginDateTextView.setPadding(1, 1, 1, 1);
-                loginDateTextView.setText(log.getLoginDate());
-                loginDateTextView.setGravity(Gravity.CENTER);
-                tableRow.addView(loginDateTextView,3);
-                System.out.println(log.getLoginDate());
-
-                logInformationTableLayout.addView(tableRow);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        logInformationSmartTable.setData(list);
     }
 
     /**

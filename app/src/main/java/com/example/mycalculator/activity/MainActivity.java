@@ -8,19 +8,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mycalculator.R;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 /**
  * 计算器
+ *
  * @author 林书浩
  * @value ADD
  * @value SUB
  * @value RIDE
  * @value DIVISION
  * @value POINT
+ * @date 2020/07/27
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -45,9 +52,15 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
+    final long DURATION = 2*1000;
+    boolean isExit = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 
         sharedPreferences = this.getSharedPreferences("user", Context.MODE_PRIVATE);
@@ -268,18 +281,6 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonRideOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            /*if (count.length() > 0) {
-                total = getOperation(total, Double.parseDouble(count));
-                lastNumber = Double.parseDouble(count);
-                calculation += (count + "×");
-                count = "";
-            } else if (calculation.length() > 0) {
-                calculation = calculation.substring(0, calculation.length() - 1);
-                calculation += "×";
-            }
-
-            textViewTotal.setText(("" + total));
-            textViewCal.setText(calculation);*/
             setOperator("×");
             symbol = '*';
         }
@@ -290,18 +291,6 @@ public class MainActivity extends AppCompatActivity {
     private class ButtonExceptOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            /*if (count.length() > 0) {
-                total += getOperation(lastNumber, Double.parseDouble(count))-lastNumber;
-                lastNumber = Double.parseDouble(count);
-                calculation += (count + "÷");
-                count = "";
-            } else if (calculation.length() > 0) {
-                calculation = calculation.substring(0, calculation.length() - 1);
-                calculation += "÷";
-            }
-
-            textViewTotal.setText(("" + total));
-            textViewCal.setText(calculation);*/
             setOperator("÷");
             symbol = '/';
         }
@@ -386,11 +375,33 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-            SharedPreferences .Editor editor = sharedPreferences.edit();
-            editor.clear();
-            editor.apply();
+            if (isExit){
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                SharedPreferences .Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+                Toast.makeText(MainActivity.this,"账号注销成功",Toast.LENGTH_SHORT).show();
+            } else {
+                isExit = true;
+                Toast.makeText(MainActivity.this,"再次点击注销账号",Toast.LENGTH_SHORT).show();
+            }
+            ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(2);
+            SignOutTask signOutTask = new SignOutTask();
+            scheduledExecutorService.scheduleAtFixedRate(signOutTask,0,2, TimeUnit.SECONDS);
+        }
+    }
+
+    class SignOutTask implements Runnable{
+
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(DURATION);
+                isExit = false;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

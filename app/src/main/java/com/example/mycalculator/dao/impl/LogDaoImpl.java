@@ -8,13 +8,14 @@ import com.example.mycalculator.dao.LogDao;
 import com.example.mycalculator.pojo.Log;
 import com.example.mycalculator.sqlite.DatabaseOpenHelper;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 日志实现类
- * @author LIN
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public class LogDaoImpl implements LogDao {
 
@@ -24,7 +25,7 @@ public class LogDaoImpl implements LogDao {
 
     Cursor cursor;
 
-    public LogDaoImpl() throws IOException {
+    public LogDaoImpl(){
         dataBaseOpenHelper = DatabaseOpenHelper.DB_HELPER_INSTANCE;
     }
 

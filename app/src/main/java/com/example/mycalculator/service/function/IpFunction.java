@@ -21,12 +21,14 @@ import java.util.Enumeration;
 
 /**
  * Ip工具类
- * @author LIN
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public class IpFunction {
 
     /**
      * 获取外网ip
+     *
      * @return 客户ip
      * @throws IOException
      * @throws JSONException
@@ -39,7 +41,6 @@ public class IpFunction {
 
             URL url = new URL("https://www.51xc.cn/ipAddressServlet.action");
             HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
-            System.out.println("=====访问外网ip成功=====");
 
             int responseCode = httpUrlConnection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {

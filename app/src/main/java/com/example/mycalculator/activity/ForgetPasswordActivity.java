@@ -21,7 +21,9 @@ import java.util.List;
 
 /**
  * 找回密码界面
- * @author LIN
+ *
+ * @author 林书浩
+ * @date 2020/07/27
  */
 public class ForgetPasswordActivity extends AppCompatActivity {
 
